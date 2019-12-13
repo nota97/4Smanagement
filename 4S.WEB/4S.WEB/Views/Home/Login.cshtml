@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/assets/img/favicon.png">
+
+    <title>Sign In</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
+          rel="stylesheet">
+
+    <!-- CSS - REQUIRED - START -->
+    <!-- Batch Icons -->
+    <link rel="stylesheet" href="/static/assets/fonts/batch-icons/css/batch-icons.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap/mdb.min.css">
+    <!-- Custom Scrollbar -->
+    <link rel="stylesheet" href="/static/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Hamburger Menu -->
+    <link rel="stylesheet" href="/static/assets/css/hamburgers/hamburgers.css">
+
+    <!-- CSS - REQUIRED - END -->
+    <!-- CSS - OPTIONAL - START -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/assets/fonts/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS - DEMO - START -->
+    <link rel="stylesheet" href="/static/assets/demo/css/ui-icons-batch-icons.css">
+    <!-- CSS - DEMO - END -->
+    <!-- CSS - OPTIONAL - END -->
+    <!-- QuillPro Styles -->
+    <link rel="stylesheet" href="/static/assets/css/quillpro/quillpro.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="right-column sisu">
+                <div class="row mx-0">
+                    <div class="col-md-7 order-md-1 signin-right-column px-5 bg-dark">
+                        <a class="signin-logo d-sm-block d-md-none" href="#">
+                            <img src="/static/assets/img/logo-white.png" width="145" height="32.3" alt="QuillPro">
+                        </a>
+                        <h1 class="display-4">Sign In To get Started</h1>
+                        <p class="lead mb-5">
+                            Big data latte SpaceTeam unicorn cortado hacker physical computing paradigm.
+                        </p>
+                    </div>
+                    <div class="col-md-5 order-md-2 signin-left-column bg-white px-5">
+                        <a class="signin-logo d-sm-none d-md-block" href="#">
+                            <img src="/static/assets/img/logo-dark.png" width="145" height="32.3" alt="QuillPro">
+                        </a>
+                        <form>
+
+                            <div class="form-group">
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" id="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">密码</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+
+                            <button type="button" id="sign_in_btn" class="btn btn-primary btn-gradient btn-block" onclick="logincheck()">
+                                <i class="batch-icon batch-icon-key"></i>
+                                Sign In
+                            </button>
+                            <hr>
+
+                            <p class="text-center">
+                                还没有账号吗? <a href="{% url 'UserManager:register' %}">快来注册吧</a>
+                            </p>
+
+                            <p class="text-center">
+                                忘记密码了? <a href="{% url 'UserManager:forgot' %}">点此找回密码</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function logincheck() {
+            //var data = serializeObject("#formAdd");
+            $.ajax({
+                url: "/Home/LoginCheck/",
+                type: "POST",
+                //data: JSON.stringify(data),
+                data: { username: $("#username").val(), password: $("#password").val() },
+                dataType: 'JSON',
+                success: function (result) {
+                    //输出data
+                    if (result.code == 1) {
+                        alert("登录成功")
+                        //页面跳转
+                        location.href = "/Home/index";
+                    }
+                    else {
+                        alert("账号或密码出错");
+                    }
+                }, error: function (result) {
+                    alert('通讯失败');
+                }
+            });
+        }
+    </script>
+    <!-- SCRIPTS - REQUIRED START -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="/static/assets/js/jquery/jquery-3.1.1.min.js"></script>
+    <!-- Popper.js - Bootstrap tooltips -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/mdb.min.js"></script>
+    <!-- Velocity -->
+    <script type="text/javascript" src="/static/assets/plugins/velocity/velocity.min.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/velocity/velocity.ui.min.js"></script>
+    <!-- Custom Scrollbar -->
+    <script type="text/javascript"
+            src="/static/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- jQuery Visible -->
+    <script type="text/javascript" src="/static/assets/plugins/jquery_visible/jquery.visible.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="/static/assets/js/misc/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- SCRIPTS - REQUIRED END -->
+    <!-- SCRIPTS - OPTIONAL START -->
+    <!-- Image Placeholder -->
+    <script type="text/javascript" src="/static/assets/js/misc/holder.min.js"></script>
+    <!-- SCRIPTS - OPTIONAL END -->
+    <!-- QuillPro Scripts -->
+    <script type="text/javascript" src="/static/assets/js/scripts.js"></script>
+
+
+</body>
+</html>
+
+
