@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    List < _4S.Model.T_Base_User > lst = ViewBag.lst;
+
+}
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                User Management
+            </div>
+            <div class="card-table table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Member</th>
+                            <th>Email</th>
+                            <th class="text-center">Status</th>
+                            <th>Created</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in lst)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
+                                                <img src="/static/assets/img/profile-pic.jpg" width="44" height="44">
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="heading mt-1">
+                                                    @item.LoginName
+                                                </div>
+                                                <div class="subtext">@item.Id</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">@item.Email</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge badge-primary">@item.Phonenumber</span>
+                                    </td>
+                                    <td>23rd Feb 2017</td>
+                                    <td class="text-right">
+                                        <a class="btn btn-primary">
+                                            <i class="batch-icon batch-icon-eye"></i>
+                                        </a>
+                                        <a class="btn btn-success">
+                                            <i class="batch-icon batch-icon-quill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

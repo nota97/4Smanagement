@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\T_Base_UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3750,6 +3751,8 @@
     <Content Include="static\codesnippet\lib\highlight\README.ru.md" />
     <Content Include="static\fonts\ionicons.ttf" />
     <Content Include="Views\Home\main.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\T_Base_User\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3767,6 +3770,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\4S.BLL\4S.BLL.csproj">
+      <Project>{f0488f25-6f70-4c06-976b-4af431c74400}</Project>
+      <Name>4S.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\4S.DAL\4S.DAL.csproj">
+      <Project>{858e4cd1-3df1-4f1c-9a6d-6def9dc994f3}</Project>
+      <Name>4S.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\4S.Model\4S.Model.csproj">
+      <Project>{d931c086-027a-47f0-b275-d5146103c0e9}</Project>
+      <Name>4S.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

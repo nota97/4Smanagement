@@ -12,7 +12,7 @@ namespace _4S.WEB.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Index", "~/Views/Shared/_Layout.cshtml");
         }
 
         public ActionResult About()
