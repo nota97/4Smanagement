@@ -1,24 +1,65 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "List";
-    List < _4S.Model.T_Base_User > lst = ViewBag.lst;
-
+    List<_4S.Model.T_Base_User> lst = ViewBag.lst;
 }
+
+   
+<div class="row mb-5">
+     <div class="col-md-12">
+          <div class="card">
+               <div class="card-body">
+                   <div class="row">
+                       <div class="col-lg-12">
+                          <p class="lead">
+                               高级查询
+                           </p>
+                           <form action="" id="registration-form">
+                                <div class="form-group">
+                                    <label for="email" class="active">Email address</label>
+                                    <input type="email" class="form-control" id="Email" name="Email" data-validation="Email" placeholder="Enter Email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username" class="active">LoginName</label>
+                                    <input type="text" class="form-control" name="LoginName" id="LoginName" data-validation="length alphanumeric"
+                                           data-validation-length="3-12"
+                                           data-validation-error-msg="LoginName has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
+                                </div>
+                                <button id="validate" type="button" class="btn btn-primary">Validate</button>
+                           </form>
+                       </div>
+                    </div>
+                </div>
+          </div>
+     </div>
+</div>
+
 
 <div class="row mb-5">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                User Management
+                  User Management
             </div>
-            <div class="card-table table-responsive">
-                <table class="table table-hover align-middle">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="toolbar" class="btn-group">
+                        <button id="btn_add" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增用户
+                        </button>
+                        <button id="btn_del" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-delete" aria-hidden="true"></span>删除
+                        </button>
+                    </div>
+                    <table id="tbList" class="table"></table>
+                    @*<div class="card-table table-responsive">
+                <table id="tbList" class="table table-hover align-middle">
                     <thead class="thead-light">
                         <tr>
                             <th>Member</th>
                             <th>Email</th>
                             <th class="text-center">Status</th>
-                            <th>Created</th>
+                            <th>Phone</th>
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
@@ -36,7 +77,7 @@
                                                 <div class="heading mt-1">
                                                     @item.LoginName
                                                 </div>
-                                                <div class="subtext">@item.Id</div>
+                                                <div class="subtext">NO.@item.Id</div>
                                             </div>
                                         </div>
                                     </td>
@@ -44,15 +85,27 @@
                                         <a href="#">@item.Email</a>
                                     </td>
                                     <td class="text-center">
-                                        <span class="badge badge-primary">@item.Phonenumber</span>
+                                        @{ if (@item.Type == 0)
+                                            {
+                                                <span class="badge badge-primary">管理员</span>
+                                            }
+                                            else if (@item.Type == 1)
+                                            {
+                                                <span class="badge badge-success">普通用户</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger">会员用户</span>
+                                            }
+                                        }
                                     </td>
-                                    <td>23rd Feb 2017</td>
+                                    <td>@item.Phonenumber</td>
                                     <td class="text-right">
                                         <a class="btn btn-primary">
                                             <i class="batch-icon batch-icon-eye"></i>
                                         </a>
                                         <a class="btn btn-success">
-                                            <i class="batch-icon batch-icon-quill"></i>
+                                            <i class="batch-icon batch-icon-bin-alt-2"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -63,10 +116,276 @@
 
                     </tbody>
                 </table>
+            </div>*@
+                </div>
             </div>
+            
         </div>
     </div>
 </div>
+
+
+<script>
+        $('#tbList').bootstrapTable({
+
+            method: 'post',
+            contentType: "application/x-www-form-urlencoded",//必须要有！！！！
+            url: "/T_Base_User/getlistByPage",//要请求数据的文件路径
+
+            
+            showRefresh: true,//刷新按钮
+            showColumns: true,
+            striped: true, //是否显示行间隔色
+
+            search: true,
+            strictSearch: true,
+
+
+            //showExport: true,
+            //exportTypes: ['excel', 'xlsx'],	   //导出类型
+            //exportOptions: {
+            //    fileName: '用户导出',              //文件名称设置
+            //    worksheetName: 'Sheet1',          //表格工作区名称
+            //    tableName: '用户表',
+            //    excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+            //},
+            //exportDataType: "basic",
+
+            toolbarAlign: 'left',//工具栏对齐方式
+            buttonsAlign: 'right',//按钮对齐方式
+            toolbar: '#toolbar',//指定工作栏
+
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pagination: true,//是否分页
+            sidePagination: 'server',//指定服务器端分页
+            pageSize: 5,//单页记录数
+            pageList: [5, 10, "all"],//分页步进值
+
+            sortName: "Id", //默认排序字段
+            sortOrder: "asc", //排序方式
+            queryParamsType: "",//limit方式,或默认方式
+            queryParams: function (params) {
+                var tempPageSize;
+                if (params.pageSize == undefined) {
+                    tempPageSize = this.totalRows;
+                } else {
+                    tempPageSize = params.pageSize;
+                }
+                var tempPageNumber;
+                if (params.pageNumber == undefined) {
+                    tempPageNumber = 1;
+                } else {
+                    tempPageNumber = params.pageNumber;
+                }
+                return {
+                    pageSize: tempPageSize,//页大小
+                    pageNumber: tempPageNumber,//页码
+                    search: params.searchText,
+                    Email: $("#Email").val(),
+                    LoginName: $("#LoginName").val(),
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder
+                }
+            },
+            columns: [
+                {
+                    title: '全选',
+                    field: 'select',
+                    //复选框
+                    checkbox: true,
+                    width: 25,
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: 'Id',
+                    field: 'Id',
+                    sortable: true
+                },
+
+                {
+                    title: '用户名',
+                    field: 'LoginName',
+                    sortable: true,
+                    editable: true
+
+                },
+                {
+                    title: '电子邮箱',
+                    field: 'Email',
+                    sortable: true,
+                    editable: true
+
+                },
+                {
+                    title: '手机号',
+                    field: 'Phonenumber',
+                    sortable: true,
+                    editable: true
+
+                },
+
+                {
+                    title: '用户类型',
+                    field: 'Type',
+                    sortable: true,
+                    editable: true
+
+                },
+                {
+                    title: '操作',
+                    formatter: function (value, row, index) {
+                        var delHtml = '<a onclick="del(' + row.Id + ')">删除</a>';
+                        var editHtml = '<a onclick="edit(' + row.Id + ')">编辑</a>';
+                        return delHtml + " | " + editHtml;
+                    }
+
+                }
+            ],
+            onEditableSave: function (field, row, oldValue, $el) {
+                //alert("111")
+
+
+                //序列化form
+                var data = row;
+                // var data = $('#formAdd').serializeObject();
+
+                $.ajax({
+
+                    type: "post",
+
+                    dataType: "json",
+
+                    url: "/T_Base_Book/editsave",
+
+                    data: JSON.stringify(data),
+                    // data:{username:'1111',pwd:'11111',nickname="1111"},
+
+                    contentType: "application/json;charset=utf-8",
+
+                    success: function (result) {
+                        if (result.code == 1) {
+                            alert(result.message);
+
+
+                            if (x_tabl_exsit("userlist")) {
+
+                                if (parent.document["userlist"].$table != undefined) {
+                                    parent.document["userlist"].$table.bootstrapTable('refresh')
+                                }
+                            }
+
+
+                            //处理
+                        } else {
+                            alert(message);
+                            //处理错误
+                        }
+
+
+                    },
+
+                    error: function (msg) {
+
+
+
+                        alert('通讯失败');
+
+                    }
+
+                });
+
+            },
+
+        });
+        $("#validate").click(function () {
+            //parent.document["tblist"].$table.bootstrapTable('refresh')           
+            $("#tbList").bootstrapTable('refresh');
+        });
+
+
+        function del(id) {
+            $.ajax({
+
+                type: "post",
+                url: "/T_Base_Book/Delete",
+                dataType: "json",
+                data: { id: id },
+                success: function (result) {
+                    //****
+                    if (result.code == 1) {
+                        //刷新
+
+                        $('#tbList').bootstrapTable('remove', {
+                            field: "Id",
+                            values: [parseInt(id)]
+                        });
+                        // location.reload();
+                    } else
+                        alert("删除失败");
+                },
+                error: function () {
+                    alert("通讯失败");
+                }
+
+
+            });
+        }
+
+
+        $("#btn_del").click(function () {
+
+            var ids = $.map(
+                $('#tbList').bootstrapTable('getSelections'),
+
+                function (row) { return row.Id }
+            );
+            if (ids.length == 0) {
+                alert("未选中");
+                return;
+            }
+            var oldids = ids;
+            ids = ids.join(",");
+            $.ajax({
+
+                type: "post",
+                url: "/T_Base_Book/Deletes",
+                dataType: "json",
+                data: { ids: ids },
+                success: function (result) {
+                    //****
+                    if (result.code == 1) {
+                        //刷新
+
+                        for (i = 0; i < oldids.length; i++) {
+                            $('#tbList').bootstrapTable('remove', {
+                                field: "Id",
+                                values: [parseInt(oldids[i])]
+                            });
+                        }
+
+
+                        // $("#tbList").bootstrapTable('refresh', { url: '/user/list2' });
+
+                        //location.reload();
+                    } else
+                        alert("删除失败");
+                },
+                error: function () {
+                    alert("通讯失败");
+                }
+
+
+            });
+        });
+
+        function edit(id) {
+            self.parent.x_tab_add("用户编辑", "/T_Base_Book/edit?id=" + id, "useredit");
+        }
+        $("#btn_add").click(function () {
+            self.parent.x_tab_add("新增书籍", "/T_Base_Book/add", "addbook");
+        })
+</script>
 
 
 
