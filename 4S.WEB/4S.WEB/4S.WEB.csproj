@@ -3753,6 +3753,8 @@
     <Content Include="Views\Home\main.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\T_Base_User\List.cshtml" />
+    <Content Include="Views\T_Base_User\Add.cshtml" />
+    <Content Include="Views\T_Base_User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

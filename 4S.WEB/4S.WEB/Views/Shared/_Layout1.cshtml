@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "main";
     Layout = null;
+    string user=ViewBag.data;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +76,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link " href="/T_Base_User/list">
-                            <i class="batch-icon batch-icon-star"></i>
+                            <i class="batch-icon batch-icon-users"></i>
                             用户管理
                         </a>
                     </li>
@@ -84,46 +85,20 @@
 
                 <ul class="nav nav-pills flex-column">
                     <li>
-                        <h6 class="nav-header">Apps</h6>
+                        <h6 class="nav-header">Products</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-parent" href="#">
-                            <i class="batch-icon batch-icon-store"></i>
-                            eCommerce
+                        <a class="nav-link " href="#">
+                            <i class="batch-icon batch-icon-star"></i>
+                            汽车管理
                         </a>
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/Home/Index">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ecommerce-product-page.html">Product Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ecommerce-category-page.html">Category Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ecommerce-cart.html">Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ecommerce-checkout-page.html">Checkout Page</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-parent" href="#">
-                            <i class="batch-icon batch-icon-search"></i>
-                            Search Results
+                        <a class="nav-link " href="#">
+                            <i class="batch-icon batch-icon-calendar"></i>
+                            配件管理
                         </a>
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="search-results-normal.html">Normal Search</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="search-results-media.html">Media Search</a>
-                            </li>
-                        </ul>
                     </li>
-
                 </ul>
 
                 <ul class="nav nav-pills flex-column">
@@ -445,7 +420,7 @@
                                 <a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile"
                                    data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
                                     <div class="profile-name">
-                                        Johanna Quinn
+                                        @user
                                     </div>
                                     <div class="profile-picture bg-gradient bg-primary has-message float-right">
                                         <img src="/static/assets/img/profile-pic.jpg" width="44" height="44">

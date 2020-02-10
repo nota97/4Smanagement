@@ -211,6 +211,12 @@
 
                 },
                 {
+                    title: '真实姓名',
+                    field: 'RealName',
+                    sortable: true,
+                    editable: true
+                },
+                {
                     title: '电子邮箱',
                     field: 'Email',
                     sortable: true,
@@ -227,75 +233,104 @@
 
                 {
                     title: '用户类型',
-                    field: 'Type',
-                    sortable: true,
-                    editable: true
+                    formatter: function (value, row, index) {
+                        if (row.Type == 0) {
+                            return [
+                                '<span class="badge badge-primary">管理员</span>',
+                            ].join('');
+                        }
+                        else if (row.Type == 1) {
+                            return [
+                                '<span class="badge badge-success">普通用户</span>',
+                            ].join('');
+                        }
+                        else {
+                            return [
+                                '<span class="badge badge-danger">会员用户</span>',
+                            ].join('');
+                        }   
+                    }
+                    //field: 'Type',
+                    //sortable: true,
+                    //editable: true
 
                 },
                 {
                     title: '操作',
                     formatter: function (value, row, index) {
-                        var delHtml = '<a onclick="del(' + row.Id + ')">删除</a>';
-                        var editHtml = '<a onclick="edit(' + row.Id + ')">编辑</a>';
-                        return delHtml + " | " + editHtml;
+                        //var delHtml = '<a onclick="del(' + row.Id + ')">删除</a>';
+                        //var editHtml = '<a onclick="edit(' + row.Id + ')">编辑</a>';
+                        //return delHtml + " | " + editHtml;
+                        return [
+                            '<button id="bind" type="button" class="btn btn-default btn-sm">删除</button>',
+                            '<button id="unbind" type="button" class="btn btn-default btn-sm">编辑</button>',
+                        ].join('');
+                    },   
+                    events: {
+                        "click #bind": function (e, value, row, index) {
+                            del(row.Id);                       
+                        },
+                        "click #unbind": function (e, value, row, index) {
+                            edit(row.Id);
+                        }
                     }
 
                 }
             ],
-            onEditableSave: function (field, row, oldValue, $el) {
-                //alert("111")
+            //onEditableSave: function (field, row, oldValue, $el) {
+            //    //alert("111")
 
 
-                //序列化form
-                var data = row;
-                // var data = $('#formAdd').serializeObject();
+            //    //序列化form
+            //    var data = row;
+            //    // var data = $('#formAdd').serializeObject();
 
-                $.ajax({
+            //    $.ajax({
 
-                    type: "post",
+            //        type: "post",
 
-                    dataType: "json",
+            //        dataType: "json",
 
-                    url: "/T_Base_Book/editsave",
+            //        url: "/T_Base_Book/editsave",
 
-                    data: JSON.stringify(data),
-                    // data:{username:'1111',pwd:'11111',nickname="1111"},
+            //        data: JSON.stringify(data),
+            //        // data:{username:'1111',pwd:'11111',nickname="1111"},
 
-                    contentType: "application/json;charset=utf-8",
+            //        contentType: "application/json;charset=utf-8",
 
-                    success: function (result) {
-                        if (result.code == 1) {
-                            alert(result.message);
-
-
-                            if (x_tabl_exsit("userlist")) {
-
-                                if (parent.document["userlist"].$table != undefined) {
-                                    parent.document["userlist"].$table.bootstrapTable('refresh')
-                                }
-                            }
+            //        success: function (result) {
+            //            if (result.code == 1) {
+            //                alert(result.message);
 
 
-                            //处理
-                        } else {
-                            alert(message);
-                            //处理错误
-                        }
+            //                if (x_tabl_exsit("userlist")) {
+
+            //                    if (parent.document["userlist"].$table != undefined) {
+            //                        parent.document["userlist"].$table.bootstrapTable('refresh')
+            //                    }
+            //                }
 
 
-                    },
+            //                //处理
+            //            } else {
+            //                alert(message);
+            //                //处理错误
+            //            }
 
-                    error: function (msg) {
+
+            //        },
+
+            //        error: function (msg) {
 
 
 
-                        alert('通讯失败');
+            //            alert('通讯失败');
 
-                    }
+            //        }
 
-                });
+            //    });
 
-            },
+            //},
 
         });
         $("#validate").click(function () {
@@ -304,11 +339,11 @@
         });
 
 
-        function del(id) {
+    function del(id) {
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_Book/Delete",
+                url: "/T_Base_User/Delete",
                 dataType: "json",
                 data: { id: id },
                 success: function (result) {
@@ -337,7 +372,6 @@
 
             var ids = $.map(
                 $('#tbList').bootstrapTable('getSelections'),
-
                 function (row) { return row.Id }
             );
             if (ids.length == 0) {
@@ -349,7 +383,7 @@
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_Book/Deletes",
+                url: "/T_Base_User/Deletes",
                 dataType: "json",
                 data: { ids: ids },
                 success: function (result) {
@@ -380,10 +414,12 @@
         });
 
         function edit(id) {
-            self.parent.x_tab_add("用户编辑", "/T_Base_Book/edit?id=" + id, "useredit");
+            //self.parent.x_tab_add("用户编辑", "/T_Base_Book/edit?id=" + id, "useredit");
+            window.location.href = "/T_Base_User/edit?id=" + id;
         }
         $("#btn_add").click(function () {
-            self.parent.x_tab_add("新增书籍", "/T_Base_Book/add", "addbook");
+            //self.parent.x_tab_add("新增书籍", "/T_Base_User/add", "adduser");
+            window.location.href = "/T_Base_User/add";
         })
 </script>
 

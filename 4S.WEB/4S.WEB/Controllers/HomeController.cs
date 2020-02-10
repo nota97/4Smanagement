@@ -63,6 +63,11 @@ namespace _4S.WEB.Controllers
 
         public ActionResult main()
         {
+            if (Session["LoginIn"] == null)
+            {
+                return Redirect("/home/login");
+            }
+            ViewBag.data = Session["LoginIn"];
             return View();
         }
     }

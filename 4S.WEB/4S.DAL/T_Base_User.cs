@@ -32,40 +32,13 @@ namespace _4S.DAL
                 user.Email = Convert.ToString(dr["Email"]);
                 user.Type = Convert.ToInt32(dr["Type"]);
                 user.Phonenumber = Convert.ToString(dr["Phonenumber"]);
+                user.RealName = Convert.ToString(dr["RealName"]);
                 lst.Add(user);
             }
             dr.Close();
             co.Close();
             return lst;
 
-        }
-
-        public List<Model.T_Base_User> GetList(string seacrh)
-        {
-            SqlConnection co = new SqlConnection();
-            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
-            co.Open();
-
-            SqlCommand cm = new SqlCommand();
-            cm.CommandText = "select * from t_base_user where LoginName like '%" + seacrh + "%'";
-            cm.Connection = co;
-
-            List<Model.T_Base_User> lst = new List<Model.T_Base_User>();
-            SqlDataReader dr = cm.ExecuteReader();
-            while (dr.Read())
-            {
-                Model.T_Base_User user = new Model.T_Base_User();
-                user.Id = Convert.ToInt32(dr["Id"]);
-                user.LoginName = Convert.ToString(dr["LoginName"]);
-                user.PWD = Convert.ToString(dr["PWD"]);
-                user.Email = Convert.ToString(dr["Email"]);
-                user.Type = Convert.ToInt32(dr["Type"]);
-                user.Phonenumber = Convert.ToString(dr["Phonenumber"]);
-                lst.Add(user);
-            }
-            dr.Close();
-            co.Close();
-            return lst;
         }
 
         public int GetCount()
@@ -117,11 +90,118 @@ namespace _4S.DAL
                 user.Email = Convert.ToString(dr["Email"]);
                 user.Type = Convert.ToInt32(dr["Type"]);
                 user.Phonenumber = Convert.ToString(dr["Phonenumber"]);
-                lst.Add(user);           
+                user.RealName = Convert.ToString(dr["RealName"]);
+                lst.Add(user);
             }
             dr.Close();
             co.Close();
             return lst;
+        }
+
+        public int Delete(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "delete from T_Base_User where id=@id";
+            cm.Parameters.AddWithValue("@id", id);
+            cm.Connection = co;
+
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+        public int Deletes(string ids)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "delete from T_Base_User where id   in (" + ids + ")";
+            cm.Connection = co;
+
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+        public int Add(Model.T_Base_User model)
+        {
+            //把数据存入数据库
+            //ado.net插入数据库
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "insert into T_Base_User (LoginName,PWD,RealName,Email,Phonenumber,Type) values (@LoginName, @PWD, @RealName, @Email, @Phonenumber,@Type)";
+            cm.Parameters.AddWithValue("@LoginName", model.LoginName);
+            cm.Parameters.AddWithValue("@PWD", model.PWD);
+            cm.Parameters.AddWithValue("@RealName", model.RealName);
+            cm.Parameters.AddWithValue("@Email", model.Email);
+            cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
+            cm.Parameters.AddWithValue("@Type", model.Type);
+
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+        public Model.T_Base_User GetModel(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select * from T_Base_User where id=@id";
+            cm.Parameters.AddWithValue("@id", id);
+
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            Model.T_Base_User model = null;
+            while (dr.Read())
+            {
+                model = new Model.T_Base_User();
+
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.LoginName = Convert.ToString(dr["LoginName"]);
+                model.PWD = Convert.ToString(dr["PWD"]);
+                model.RealName = Convert.ToString(dr["RealName"]);
+                model.Email = Convert.ToString(dr["Email"]);
+                model.Phonenumber = Convert.ToString(dr["Phonenumber"]);
+                model.Type = Convert.ToInt32(dr["Type"]);
+            }
+            dr.Close();
+            co.Close();
+            return model;
+        }
+
+        public int Update(Model.T_Base_User model)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "update T_Base_User set LoginName=@LoginName,PWD=@PWD,RealName=@RealName,Email=@Email,Phonenumber=@Phonenumber,Type=@Type where Id=@Id";
+            cm.Parameters.AddWithValue("@LoginName", model.LoginName);
+            cm.Parameters.AddWithValue("@PWD", model.PWD);
+            cm.Parameters.AddWithValue("@RealName", model.RealName);
+            cm.Parameters.AddWithValue("@Email", model.Email);
+            cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
+            cm.Parameters.AddWithValue("@Type", model.Type);
+            cm.Parameters.AddWithValue("@Id", model.Id);
+            cm.Connection = co;
+
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
         }
     }
 }
