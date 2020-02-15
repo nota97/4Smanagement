@@ -15,5 +15,6 @@ namespace _4S.Model
         public string Email { get; set; }
         public string Phonenumber { get; set; }
         public string RealName { get; set; }
+        public string Remark { get; set; }
     }
 }

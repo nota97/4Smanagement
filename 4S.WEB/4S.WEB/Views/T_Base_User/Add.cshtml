@@ -22,8 +22,8 @@
                                 <div class="form-group">
                                     <label for="LoginName" class="active">用户名</label>
                                     <input type="text" class="form-control" name="LoginName" id="LoginName" data-validation="length alphanumeric"
-                                    data-validation-length="3-12"
-                                    data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
+                                           data-validation-length="3-12"
+                                           data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
                                 </div>
 
                                 <div class="form-group">
@@ -32,13 +32,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label for="realname" class="active">真实姓名</label>
-                                <input type="text" class="form-control" name="RealName" id="RealName" placeholder="RealName">
+                                    <label for="realname" class="active">真实姓名</label>
+                                    <input type="text" class="form-control" name="RealName" id="RealName" placeholder="RealName">
                                 </div>
 
                                 <div class="form-group">
-                                <label for="email" class="active">电子邮箱</label>
-                                <input type="email" class="form-control" id="Email" name="Email" data-validation="Email" placeholder="Enter Email">
+                                    <label for="email" class="active">电子邮箱</label>
+                                    <input type="email" class="form-control" id="Email" name="Email" data-validation="Email" placeholder="Enter Email">
                                 </div>
 
                                 <div class="form-group">
@@ -59,7 +59,11 @@
                                             <option value="0">管理员</option>
                                         </select>
                                     </div>
-                                    
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Remark" class="active">备注</label>
+                                    <textarea class="form-control" name="Remark" id="Remark" rows="3"></textarea>
                                 </div>
                                 <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">Validate</button>
                             </form>

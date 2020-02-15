@@ -1,12 +1,12 @@
 ﻿
 @{
     ViewBag.Title = "Edit";
-    _4S.Model.T_Base_User user = ViewBag.model;
+    _4S.Model.T_Base_Car car = ViewBag.model;
 }
 
 <div class="row">
     <div class="col-md-12">
-        <h1>用户编辑</h1>
+        <h1>新增车辆</h1>
     </div>
 </div>
 <div class="row mb-5">
@@ -20,64 +20,73 @@
                         </p>
                         <form action="" id="formAdd">
                             <div class="form-group">
-                                <input type="hidden" name="Id" value=@user.Id>
-                                <label for="LoginName" class="active">用户名</label>
-                                <input type="text" class="form-control" name="LoginName" id="LoginName" value="@user.LoginName" data-validation="length alphanumeric"
+                                <input type="hidden" name="Id" value=@car.Id>
+                                <label for="Brand" class="active">品牌</label>
+                                <input type="text" class="form-control" name="Brand" id="Brand" value="@car.Brand" data-validation="length alphanumeric"
                                        data-validation-length="3-12"
-                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
+                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
                             </div>
 
                             <div class="form-group">
-                                <label for="password1" class="active">密码</label>
-                                <input type="password" class="form-control" id="PWD" name="PWD" value="@user.PWD" data-validation="strength" placeholder="Password">
+                                <label for="Carmodel" class="active">车型</label>
+                                <input type="text" class="form-control" id="Carmodel" name="Carmodel" value="@car.Carmodel" data-validation="strength" placeholder="Carmodel">
                             </div>
 
                             <div class="form-group">
-                                <label for="realname" class="active">真实姓名</label>
-                                <input type="text" class="form-control" name="RealName" id="RealName" value="@user.RealName" placeholder="RealName">
+                                <label for="Modeldetail" class="active">款式</label>
+                                <input type="text" class="form-control" name="Modeldetail" id="Modeldetail" value="@car.Modeldetail" placeholder="Modeldetail">
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="active">电子邮箱</label>
-                                <input type="email" class="form-control" id="Email" name="Email" value="@user.Email" data-validation="Email" placeholder="Enter Email">
+                                <label for="Price" class="active">价格(单位：万)</label>
+                                <input type="text" class="form-control" id="Price" name="Price" value="@car.Price" placeholder="Price">
                             </div>
 
                             <div class="form-group">
-                                <label for="phonenumber" class="active">手机号</label>
-                                <input type="text" class="form-control" name="Phonenumber" id="Phonenumber" value="@user.Phonenumber" placeholder="Phonenumber">
+                                <label for="Stock" class="active">库存</label>
+                                <input type="text" class="form-control" name="Stock" id="Stock" value="@car.Stock" placeholder="Stock">
                             </div>
 
                             <div class="form-group">
-                                <label class="layui-form-label">用户类型</label>
+                                <label class="layui-form-label">颜色</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Options</label>
                                     </div>
-                                    <select class="custom-select" name="Type" id="inputGroupSelect01" lay-verify="required">
-
-                                        @{ if (user.Type == 0)
+                                    <select class="custom-select" name="Color" id="inputGroupSelect01" lay-verify="required">
+                                        @{ if (car.Color == 0)
                                             {
-                                                <option selected value="0">管理员 </option>;
+                                                <option selected value="0">白色 </option>;
                                             }
-                                            else if (user.Type == 1)
+                                            else if (car.Color == 1)
                                             {
-                                                <option selected value="1">普通用户 </option>;
+                                                <option selected value="1">黑色 </option>;
                                             }
-                                            else
+                                            else if (car.Color == 2)
                                             {
-                                                <option selected value="2">会员用户 </option>;
+                                                <option selected value="2">红色 </option>;
+                                            }
+                                            else if (car.Color == 3)
+                                            {
+                                                <option selected value="3">蓝色 </option>;
+                                            }
+                                            else if (car.Color == 4)
+                                            {
+                                                <option selected value="4">灰色 </option>;
                                             }
                                         }
-                                        <option value="2">会员用户</option>
-                                        <option value="1">普通用户</option>
-                                        <option value="0">管理员</option>
+                                        <option value="4">灰色</option>
+                                        <option value="3">蓝色</option>
+                                        <option value="2">红色</option>
+                                        <option value="1">黑色</option>
+                                        <option value="0">白色</option>
                                     </select>
                                 </div>
 
                             </div>
                             <div class="form-group">
-                                <label for="Remark" class="active">备注</label>
-                                <textarea class="form-control" name="Remark" id="Remark" rows="3">@user.Remark</textarea>
+                                <label for="Image" class="active">图片</label>
+                                <textarea class="form-control" name="Image" id="Image" rows="3">@car.Image</textarea>
                             </div>
                             <button id="validate" type="button" class="btn btn-primary" onclick="EditSave()">Validate</button>
                         </form>
@@ -94,6 +103,7 @@
         </footer>
     </div>
 </div>
+
 <script type="text/javascript">
     function serializeObject(form) {
         var o = {};
@@ -122,9 +132,9 @@
 
             dataType: "json",
 
-            url: "/T_Base_User/editsave",
+            url: "/T_Base_Car/editsave",
 
-            data: JSON.stringify(data),          
+            data: JSON.stringify(data),
             contentType: "application/json;charset=utf-8",
 
             success: function (result) {
@@ -137,7 +147,7 @@
 
                     //处理
                 } else {
-                    alert(message);
+                    alert(result.message);
                     //处理错误
                 }
             },
@@ -148,4 +158,3 @@
         });
     }
 </script>
-

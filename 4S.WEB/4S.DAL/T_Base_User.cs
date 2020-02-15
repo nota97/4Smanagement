@@ -33,6 +33,7 @@ namespace _4S.DAL
                 user.Type = Convert.ToInt32(dr["Type"]);
                 user.Phonenumber = Convert.ToString(dr["Phonenumber"]);
                 user.RealName = Convert.ToString(dr["RealName"]);
+                user.Remark = Convert.ToString(dr["Remark"]);
                 lst.Add(user);
             }
             dr.Close();
@@ -91,6 +92,7 @@ namespace _4S.DAL
                 user.Type = Convert.ToInt32(dr["Type"]);
                 user.Phonenumber = Convert.ToString(dr["Phonenumber"]);
                 user.RealName = Convert.ToString(dr["RealName"]);
+                user.Remark = Convert.ToString(dr["Remark"]);
                 lst.Add(user);
             }
             dr.Close();
@@ -138,14 +140,14 @@ namespace _4S.DAL
             co.Open();
 
             SqlCommand cm = new SqlCommand();
-            cm.CommandText = "insert into T_Base_User (LoginName,PWD,RealName,Email,Phonenumber,Type) values (@LoginName, @PWD, @RealName, @Email, @Phonenumber,@Type)";
+            cm.CommandText = "insert into T_Base_User (LoginName,PWD,RealName,Email,Phonenumber,Type,Remark) values (@LoginName, @PWD, @RealName, @Email, @Phonenumber,@Type,@Remark)";
             cm.Parameters.AddWithValue("@LoginName", model.LoginName);
             cm.Parameters.AddWithValue("@PWD", model.PWD);
             cm.Parameters.AddWithValue("@RealName", model.RealName);
             cm.Parameters.AddWithValue("@Email", model.Email);
             cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
             cm.Parameters.AddWithValue("@Type", model.Type);
-
+            cm.Parameters.AddWithValue("@Remark", model.Remark);
             cm.Connection = co;
             int result = cm.ExecuteNonQuery();
             co.Close();
@@ -176,6 +178,7 @@ namespace _4S.DAL
                 model.Email = Convert.ToString(dr["Email"]);
                 model.Phonenumber = Convert.ToString(dr["Phonenumber"]);
                 model.Type = Convert.ToInt32(dr["Type"]);
+                model.Remark = Convert.ToString(dr["Remark"]);
             }
             dr.Close();
             co.Close();
@@ -189,7 +192,7 @@ namespace _4S.DAL
             co.Open();
 
             SqlCommand cm = new SqlCommand();
-            cm.CommandText = "update T_Base_User set LoginName=@LoginName,PWD=@PWD,RealName=@RealName,Email=@Email,Phonenumber=@Phonenumber,Type=@Type where Id=@Id";
+            cm.CommandText = "update T_Base_User set LoginName=@LoginName,PWD=@PWD,RealName=@RealName,Email=@Email,Phonenumber=@Phonenumber,Type=@Type,Remark=@Remark where Id=@Id";
             cm.Parameters.AddWithValue("@LoginName", model.LoginName);
             cm.Parameters.AddWithValue("@PWD", model.PWD);
             cm.Parameters.AddWithValue("@RealName", model.RealName);
@@ -197,6 +200,7 @@ namespace _4S.DAL
             cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
             cm.Parameters.AddWithValue("@Type", model.Type);
             cm.Parameters.AddWithValue("@Id", model.Id);
+            cm.Parameters.AddWithValue("@Remark", model.Remark);
             cm.Connection = co;
 
             int result = cm.ExecuteNonQuery();

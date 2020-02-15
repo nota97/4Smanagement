@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\T_Base_CarController.cs" />
     <Compile Include="Controllers\T_Base_UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,6 +164,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\718_1.jpg" />
+    <Content Include="Img\718_2.jpg" />
+    <Content Include="Img\911_1.jpg" />
+    <Content Include="Img\Cayenne1.jpg" />
+    <Content Include="Img\Macan_1.jpg" />
+    <Content Include="Img\s10823_420.jpg" />
     <Content Include="quillpro\assets\css\bootstrap\bootstrap-rtl.min.css" />
     <Content Include="quillpro\assets\css\bootstrap\bootstrap.min.css" />
     <Content Include="quillpro\assets\css\bootstrap\mdb-rtl.min.css" />
@@ -3755,6 +3762,9 @@
     <Content Include="Views\T_Base_User\List.cshtml" />
     <Content Include="Views\T_Base_User\Add.cshtml" />
     <Content Include="Views\T_Base_User\Edit.cshtml" />
+    <Content Include="Views\T_Base_Car\List.cshtml" />
+    <Content Include="Views\T_Base_Car\Add.cshtml" />
+    <Content Include="Views\T_Base_Car\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
