@@ -86,7 +86,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="Image" class="active">图片</label>
-                                <textarea class="form-control" name="Image" id="Image" rows="3">@car.Image</textarea>
+                                @*<textarea class="form-control" name="Image" id="Image" rows="3">@car.Image</textarea>*@
+                                <textarea class="form-control load-ckeditor" name="Image" id="Image" rows="30">
+                                    <img alt="" src="@car.Image" width="400" height="300" />
+                                </textarea>
                             </div>
                             <button id="validate" type="button" class="btn btn-primary" onclick="EditSave()">Validate</button>
                         </form>
@@ -103,7 +106,8 @@
         </footer>
     </div>
 </div>
-
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/adapters/jquery.js"></script>
 <script type="text/javascript">
     function serializeObject(form) {
         var o = {};
@@ -124,6 +128,7 @@
 
         //序列化form
         var data = serializeObject("#formAdd");
+        data['Image'] = data['Image'].split('"')[3];
         // var data = $('#formAdd').serializeObject();
 
         $.ajax({

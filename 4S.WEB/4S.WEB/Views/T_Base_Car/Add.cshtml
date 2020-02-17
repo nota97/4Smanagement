@@ -64,7 +64,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="Image" class="active">图片</label>
-                                <textarea class="form-control" name="Image" id="Image" rows="3"></textarea>
+                                @*<textarea class="form-control" name="Image" id="Image" rows="3"></textarea>*@
+                                <textarea class="form-control load-ckeditor" name="Image" id="Image" rows="30"></textarea>
+                                
                             </div>
                             <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">Validate</button>
                         </form>
@@ -81,59 +83,67 @@
         </footer>
     </div>
 </div>
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/adapters/jquery.js"></script>
+@*<script type="text/javascript" src="/quillpro/assets/demo/js/forms-extra.js"></script>*@
+
 
 <script type="text/javascript">
-        function serializeObject(form) {
-            var o = {};
-            var a = $(form).serializeArray();
-            $.each(a, function () {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
+    function serializeObject(form) {
+        var o = {};
+        var a = $(form).serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
                 }
-            });
-            return o;
-        };
-        function AddSave() {
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+    function AddSave() {
 
-            //序列化form
-            var data = serializeObject("#formAdd");
+        //序列化form
+        var data = serializeObject("#formAdd");
+        console.log(data['Image']);
+        console.log(data['Image'].split('"')[3]);
+        data['Image'] = data['Image'].split('"')[3];
+        console.log(JSON.stringify(data)); 
+        
+        //$.ajax({
 
-            $.ajax({
+        //    type: "post",
 
-                type: "post",
+        //    dataType: "json",
 
-                dataType: "json",
+        //    url: "/T_Base_Car/addsave",
 
-                url: "/T_Base_Car/addsave",
+        //    data: JSON.stringify(data),
 
-                data: JSON.stringify(data),
+        //    contentType: "application/json;charset=utf-8",
 
-                contentType: "application/json;charset=utf-8",
+        //    success: function (result) {
+        //        if (result.code == 1) {
+        //            alert(result.message);
+        //            window.location.href = "List";
+        //            //self.parent.x_tab_reload("T_Base_Book_List");
+        //            //self.parent.x_tab_delete("addbook");
+        //            //self.parent.x_tab_reload("T_Base_Book_List");
 
-                success: function (result) {
-                    if (result.code == 1) {
-                        alert(result.message);
-                        window.location.href = "List";
-                        //self.parent.x_tab_reload("T_Base_Book_List");
-                        //self.parent.x_tab_delete("addbook");
-                        //self.parent.x_tab_reload("T_Base_Book_List");
+        //            //处理
+        //        } else {
+        //            alert(message);
+        //            //处理错误
+        //        }
 
-                        //处理
-                    } else {
-                        alert(message);
-                        //处理错误
-                    }
-
-                },
-                 error: function (msg) {
-                    alert('通讯失败');
-                }
-            });
-        }
+        //    },
+        //    error: function (msg) {
+        //        alert('通讯失败');
+        //    }
+        //});
+    }
 </script>
 
