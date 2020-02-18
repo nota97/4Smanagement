@@ -22,17 +22,17 @@ namespace _4S.BLL
 
         }
 
-        public int Delete(int id)
+        public int Delete(int id,int BasicparameterId)
         {
             DAL.T_Base_Car dal = new DAL.T_Base_Car();
-            return dal.Delete(id);
+            return dal.Delete(id, BasicparameterId);
         }
 
-        public int Deletes(string ids)
+        public int Deletes(string ids,string BasicparameterIds)
         {
             //记录日志
             DAL.T_Base_Car dal = new DAL.T_Base_Car();
-            return dal.Deletes(ids);
+            return dal.Deletes(ids, BasicparameterIds);
         }
 
         public int Add(Model.T_Base_Car model)

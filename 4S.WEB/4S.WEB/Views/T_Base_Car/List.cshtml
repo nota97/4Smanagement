@@ -44,7 +44,7 @@
             <div class="card-header">
                 Car Management
             </div>
-            <div class="card-body">
+            <div class="card-body" style="width:1220px">
                 <div class="table-responsive">
                     <div id="toolbar" class="btn-group">
                         <button id="btn_add" type="button" class="btn btn-default">
@@ -145,7 +145,7 @@
                 {
                     title: '品牌',
                     field: 'Brand',
-                    width: '150%',
+                    width: '100%',
                     sortable: true,
                     editable: true
 
@@ -164,7 +164,7 @@
                 {
                     title: '价格',
                     field: 'Price',
-                    width:'150%',
+                    width:'100%',
                     sortable: true,
                     editable: true
 
@@ -172,7 +172,7 @@
                 {
                     title: '库存',
                     field: 'Stock',
-                    width: '150%',
+                    width: '100%',
                     sortable: true,
                     editable: true
 
@@ -222,6 +222,69 @@
                     width:'150%'
                 },
                 {
+                    title: '级别',
+                    editable: true,
+                    field: 'CarParameter.Level',
+                    visible: true,
+                    width: '100%'
+                },
+                {
+                    title: '发动机',
+                    field: 'CarParameter.Engine',
+                    editable: true,
+                    visible: true,
+                    width: '100%'
+                },
+                {
+                    title: '动力类型',
+                    field: 'CarParameter.Powertype',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '变速箱',
+                    field: 'CarParameter.Gearbox',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '长×宽×高(mm)',
+                    field: 'CarParameter.LWG',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '车身结构',
+                    field: 'CarParameter.Bodystructure',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '上市年份',
+                    field: 'CarParameter.Listingyear',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '最高车速(km/h)',
+                    field: 'CarParameter.Topspeed',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
+                    title: '0-100加速时间(s)',
+                    field: 'CarParameter.accelerate',
+                    editable: true,
+                    visible: false,
+                    width: '100%'
+                },
+                {
                     title: '操作',
                     width: '150%',
                     formatter: function (value, row, index) {
@@ -235,7 +298,7 @@
                     },
                     events: {
                         "click #bind": function (e, value, row, index) {
-                            del(row.Id);
+                            del(row.Id, row.BasicparameterId);
                         },
                         "click #unbind": function (e, value, row, index) {
                             edit(row.Id);
@@ -251,14 +314,13 @@
             $("#tbList").bootstrapTable('refresh');
         });
 
-
-    function del(id) {
+    function del(id, BasicparameterId) {
             $.ajax({
 
                 type: "post",
                 url: "/T_Base_Car/Delete",
                 dataType: "json",
-                data: { id: id },
+                data: { id: id, BasicparameterId: BasicparameterId },
                 success: function (result) {
                     //****
                     if (result.code == 1) {
@@ -287,18 +349,23 @@
                 $('#tbList').bootstrapTable('getSelections'),
                 function (row) { return row.Id }
             );
+            var BasicparameterId = $.map(
+                $('#tbList').bootstrapTable('getSelections'),
+                function (row) { return row.BasicparameterId }
+            );
             if (ids.length == 0) {
                 alert("未选中");
                 return;
             }
             var oldids = ids;
             ids = ids.join(",");
+            BasicparameterIds = BasicparameterId.join(",");
             $.ajax({
 
                 type: "post",
                 url: "/T_Base_Car/Deletes",
                 dataType: "json",
-                data: { ids: ids },
+                data: { ids: ids, BasicparameterIds: BasicparameterIds },
                 success: function (result) {
                     //****
                     if (result.code == 1) {
@@ -310,7 +377,6 @@
                                 values: [parseInt(oldids[i])]
                             });
                         }
-
 
                         // $("#tbList").bootstrapTable('refresh', { url: '/user/list2' });
 

@@ -16,5 +16,8 @@ namespace _4S.Model
         public int Stock { get; set; }
         public int Color { get; set; }
         public string Image { get; set; }
+        public int BasicparameterId { get; set; }
+        public Model.T_Base_CarParameter CarParameter { get; set; }
+        
     }
 }

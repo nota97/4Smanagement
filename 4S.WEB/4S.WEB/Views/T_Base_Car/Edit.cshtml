@@ -19,75 +19,119 @@
                             Click "Validate" below to see the validation in action
                         </p>
                         <form action="" id="formAdd">
-                            <div class="form-group">
-                                <input type="hidden" name="Id" value=@car.Id>
-                                <label for="Brand" class="active">品牌</label>
-                                <input type="text" class="form-control" name="Brand" id="Brand" value="@car.Brand" data-validation="length alphanumeric"
-                                       data-validation-length="3-12"
-                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Carmodel" class="active">车型</label>
-                                <input type="text" class="form-control" id="Carmodel" name="Carmodel" value="@car.Carmodel" data-validation="strength" placeholder="Carmodel">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Modeldetail" class="active">款式</label>
-                                <input type="text" class="form-control" name="Modeldetail" id="Modeldetail" value="@car.Modeldetail" placeholder="Modeldetail">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Price" class="active">价格(单位：万)</label>
-                                <input type="text" class="form-control" id="Price" name="Price" value="@car.Price" placeholder="Price">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Stock" class="active">库存</label>
-                                <input type="text" class="form-control" name="Stock" id="Stock" value="@car.Stock" placeholder="Stock">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="layui-form-label">颜色</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            <div class="row pb-5">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="hidden" name="Id" value=@car.Id>
+                                        <input type="hidden" name="BasicparameterId" value=@car.BasicparameterId>
+                                        <input type="hidden" name="CarParameter.Id" value=@car.CarParameter.Id>
+                                        <label for="Brand" class="active">品牌</label>
+                                        <input type="text" class="form-control" name="Brand" id="Brand" value="@car.Brand" data-validation="length alphanumeric"
+                                               data-validation-length="3-12"
+                                               data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
                                     </div>
-                                    <select class="custom-select" name="Color" id="inputGroupSelect01" lay-verify="required">
-                                        @{ if (car.Color == 0)
-                                            {
-                                                <option selected value="0">白色 </option>;
-                                            }
-                                            else if (car.Color == 1)
-                                            {
-                                                <option selected value="1">黑色 </option>;
-                                            }
-                                            else if (car.Color == 2)
-                                            {
-                                                <option selected value="2">红色 </option>;
-                                            }
-                                            else if (car.Color == 3)
-                                            {
-                                                <option selected value="3">蓝色 </option>;
-                                            }
-                                            else if (car.Color == 4)
-                                            {
-                                                <option selected value="4">灰色 </option>;
-                                            }
-                                        }
-                                        <option value="4">灰色</option>
-                                        <option value="3">蓝色</option>
-                                        <option value="2">红色</option>
-                                        <option value="1">黑色</option>
-                                        <option value="0">白色</option>
-                                    </select>
-                                </div>
 
-                            </div>
+                                    <div class="form-group">
+                                        <label for="Carmodel" class="active">车型</label>
+                                        <input type="text" class="form-control" id="Carmodel" name="Carmodel" value="@car.Carmodel" data-validation="strength" placeholder="Carmodel">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Modeldetail" class="active">款式</label>
+                                        <input type="text" class="form-control" name="Modeldetail" id="Modeldetail" value="@car.Modeldetail" placeholder="Modeldetail">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Price" class="active">价格(单位：万)</label>
+                                        <input type="text" class="form-control" id="Price" name="Price" value="@car.Price" placeholder="Price">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Stock" class="active">库存</label>
+                                        <input type="text" class="form-control" name="Stock" id="Stock" value="@car.Stock" placeholder="Stock">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="layui-form-label">颜色</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            </div>
+                                            <select class="custom-select" name="Color" id="inputGroupSelect01" lay-verify="required">
+                                                @{ if (car.Color == 0)
+                                                    {
+                                                        <option selected value="0">白色 </option>;
+                                                    }
+                                                    else if (car.Color == 1)
+                                                    {
+                                                        <option selected value="1">黑色 </option>;
+                                                    }
+                                                    else if (car.Color == 2)
+                                                    {
+                                                        <option selected value="2">红色 </option>;
+                                                    }
+                                                    else if (car.Color == 3)
+                                                    {
+                                                        <option selected value="3">蓝色 </option>;
+                                                    }
+                                                    else if (car.Color == 4)
+                                                    {
+                                                        <option selected value="4">灰色 </option>;
+                                                    }
+                                                }
+                                                <option value="4">灰色</option>
+                                                <option value="3">蓝色</option>
+                                                <option value="2">红色</option>
+                                                <option value="1">黑色</option>
+                                                <option value="0">白色</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Level" class="active">级别</label>
+                                        <input type="text" class="form-control" name="CarParameter.Level" id="Level" value="@car.CarParameter.Level" placeholder="Level">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Engine" class="active">发动机</label>
+                                        <input type="text" class="form-control" name="CarParameter.Engine" id="Engine" value="@car.CarParameter.Engine" placeholder="Engine">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Powertype" class="active">动力类型</label>
+                                        <input type="text" class="form-control" name="CarParameter.Powertype" id="Powertype" value="@car.CarParameter.Powertype" placeholder="Powertype">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Gearbox" class="active">变速箱</label>
+                                        <input type="text" class="form-control" name="CarParameter.Gearbox" id="Gearbox" value="@car.CarParameter.Gearbox" placeholder="Gearbox">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LWG" class="active">长×宽×高(mm)</label>
+                                        <input type="text" class="form-control" name="CarParameter.LWG" id="LWG" value="@car.CarParameter.LWG" placeholder="Length, width and height">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Bodystructure" class="active">车身结构</label>
+                                        <input type="text" class="form-control" name="CarParameter.Bodystructure" id="Bodystructure" value="@car.CarParameter.Bodystructure" placeholder="Bodystructure">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Listingyear" class="active">上市年份</label>
+                                        <input type="text" class="form-control" name="CarParameter.Listingyear" id="Listingyear" value="@car.CarParameter.Listingyear" placeholder="Listingyear">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Topspeed" class="active">最高车速(km/h)</label>
+                                        <input type="text" class="form-control" name="CarParameter.Topspeed" id="Topspeed" value="@car.CarParameter.Topspeed" placeholder="Top Speed">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accelerate" class="active">0-100加速时间(s)</label>
+                                        <input type="text" class="form-control" name="CarParameter.accelerate" id="accelerate" value="@car.CarParameter.accelerate" placeholder="Accelerate Time">
+                                    </div>
+                                </div>
+                            </div>                            
                             <div class="form-group">
-                                <label for="Image" class="active">图片</label>
-                                @*<textarea class="form-control" name="Image" id="Image" rows="3">@car.Image</textarea>*@
-                                <textarea class="form-control load-ckeditor" name="Image" id="Image" rows="30">
+                                 <label for="Image" class="active">图片</label>
+                                    @*<textarea class="form-control" name="Image" id="Image" rows="3">@car.Image</textarea>*@
+                                    <textarea class="form-control load-ckeditor" name="Image" id="Image" rows="30">
                                     <img alt="" src="@car.Image" width="400" height="300" />
                                 </textarea>
                             </div>

@@ -23,10 +23,10 @@ namespace _4S.WEB.Controllers
             return Json(result);
         }
 
-        public JsonResult Delete(int id)
+        public JsonResult Delete(int id,int BasicparameterId)
         {
             BLL.T_Base_Car bll = new BLL.T_Base_Car();
-            int result = bll.Delete(id);
+            int result = bll.Delete(id, BasicparameterId);
             if (result > 0)
             {
                 return Json(new { code = 1, message = "删除成功" });
@@ -36,11 +36,11 @@ namespace _4S.WEB.Controllers
 
         }
 
-        public JsonResult Deletes(string ids)
+        public JsonResult Deletes(string ids,string BasicparameterIds)
         {
             BLL.T_Base_Car bll = new BLL.T_Base_Car();
-            int result = bll.Deletes(ids);
-            if (result > 0)
+            int result = bll.Deletes(ids, BasicparameterIds);
+            if (result > 1)
             {
                 return Json(new { code = 1, message = "删除成功" });
             }

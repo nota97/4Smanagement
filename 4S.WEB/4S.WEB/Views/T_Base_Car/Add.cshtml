@@ -18,50 +18,94 @@
                             Click "Validate" below to see the validation in action
                         </p>
                         <form action="" id="formAdd">
-                            <div class="form-group">
-                                <label for="Brand" class="active">品牌</label>
-                                <input type="text" class="form-control" name="Brand" id="Brand" data-validation="length alphanumeric"
-                                       data-validation-length="3-12"
-                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Carmodel" class="active">车型</label>
-                                <input type="text" class="form-control" id="Carmodel" name="Carmodel" data-validation="strength" placeholder="Carmodel">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Modeldetail" class="active">款式</label>
-                                <input type="text" class="form-control" name="Modeldetail" id="Modeldetail" placeholder="Modeldetail">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Price" class="active">价格(单位：万)</label>
-                                <input type="text" class="form-control" id="Price" name="Price" placeholder="Price">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Stock" class="active">库存</label>
-                                <input type="text" class="form-control" name="Stock" id="Stock" placeholder="Stock">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="layui-form-label">颜色</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                            <div class="row pb-5">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Brand" class="active">品牌</label>
+                                        <input type="text" class="form-control" name="Brand" id="Brand" data-validation="length alphanumeric"
+                                               data-validation-length="3-12"
+                                               data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
                                     </div>
-                                    <select class="custom-select" name="Color" id="inputGroupSelect01" lay-verify="required">
-                                        <option selected>Choose...</option>
-                                        <option value="4">灰色</option>
-                                        <option value="3">蓝色</option>
-                                        <option value="2">红色</option>
-                                        <option value="1">黑色</option>
-                                        <option value="0">白色</option>
-                                    </select>
-                                </div>
 
+                                    <div class="form-group">
+                                        <label for="Carmodel" class="active">车型</label>
+                                        <input type="text" class="form-control" id="Carmodel" name="Carmodel" data-validation="strength" placeholder="Carmodel">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Modeldetail" class="active">款式</label>
+                                        <input type="text" class="form-control" name="Modeldetail" id="Modeldetail" placeholder="Modeldetail">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Price" class="active">价格(单位：万)</label>
+                                        <input type="text" class="form-control" id="Price" name="Price" placeholder="Price">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Stock" class="active">库存</label>
+                                        <input type="text" class="form-control" name="Stock" id="Stock" placeholder="Stock">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="layui-form-label">颜色</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                                            </div>
+                                            <select class="custom-select" name="Color" id="inputGroupSelect01" lay-verify="required">
+                                                <option selected>Choose...</option>
+                                                <option value="4">灰色</option>
+                                                <option value="3">蓝色</option>
+                                                <option value="2">红色</option>
+                                                <option value="1">黑色</option>
+                                                <option value="0">白色</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Level" class="active">级别</label>
+                                        <input type="text" class="form-control" name="CarParameter.Level" id="Level" placeholder="Level">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Engine" class="active">发动机</label>
+                                        <input type="text" class="form-control" name="CarParameter.Engine" id="Engine" placeholder="Engine">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Powertype" class="active">动力类型</label>
+                                        <input type="text" class="form-control" name="CarParameter.Powertype" id="Powertype" placeholder="Powertype">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Gearbox" class="active">变速箱</label>
+                                        <input type="text" class="form-control" name="CarParameter.Gearbox" id="Gearbox" placeholder="Gearbox">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="LWG" class="active">长×宽×高(mm)</label>
+                                        <input type="text" class="form-control" name="CarParameter.LWG" id="LWG" placeholder="Length, width and height">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Bodystructure" class="active">车身结构</label>
+                                        <input type="text" class="form-control" name="CarParameter.Bodystructure" id="Bodystructure" placeholder="Bodystructure">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Listingyear" class="active">上市年份</label>
+                                        <input type="text" class="form-control" name="CarParameter.Listingyear" id="Listingyear" placeholder="Listingyear">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Topspeed" class="active">最高车速(km/h)</label>
+                                        <input type="text" class="form-control" name="CarParameter.Topspeed" id="Topspeed" placeholder="Top Speed">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accelerate" class="active">0-100加速时间(s)</label>
+                                        <input type="text" class="form-control" name="CarParameter.accelerate" id="accelerate" placeholder="Accelerate Time">
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="Image" class="active">图片</label>
                                 @*<textarea class="form-control" name="Image" id="Image" rows="3"></textarea>*@
@@ -113,37 +157,37 @@
         data['Image'] = data['Image'].split('"')[3];
         console.log(JSON.stringify(data)); 
         
-        //$.ajax({
+        $.ajax({
 
-        //    type: "post",
+            type: "post",
 
-        //    dataType: "json",
+            dataType: "json",
 
-        //    url: "/T_Base_Car/addsave",
+            url: "/T_Base_Car/addsave",
 
-        //    data: JSON.stringify(data),
+            data: JSON.stringify(data),
 
-        //    contentType: "application/json;charset=utf-8",
+            contentType: "application/json;charset=utf-8",
 
-        //    success: function (result) {
-        //        if (result.code == 1) {
-        //            alert(result.message);
-        //            window.location.href = "List";
-        //            //self.parent.x_tab_reload("T_Base_Book_List");
-        //            //self.parent.x_tab_delete("addbook");
-        //            //self.parent.x_tab_reload("T_Base_Book_List");
+            success: function (result) {
+                if (result.code == 1) {
+                    alert(result.message);
+                    window.location.href = "List";
+                    //self.parent.x_tab_reload("T_Base_Book_List");
+                    //self.parent.x_tab_delete("addbook");
+                    //self.parent.x_tab_reload("T_Base_Book_List");
 
-        //            //处理
-        //        } else {
-        //            alert(message);
-        //            //处理错误
-        //        }
+                    //处理
+                } else {
+                    alert(message);
+                    //处理错误
+                }
 
-        //    },
-        //    error: function (msg) {
-        //        alert('通讯失败');
-        //    }
-        //});
+            },
+            error: function (msg) {
+                alert('通讯失败');
+            }
+        });
     }
 </script>
 
