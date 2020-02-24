@@ -20,8 +20,8 @@
                         </p>
                         <form action="" id="registration-form">
                             <div class="form-group">
-                                <label for="Brand" class="active">品牌</label>
-                                <input type="text" class="form-control" id="Brand" name="Brand" data-validation="Brand" placeholder="Enter Brand">
+                                <label for="RealName" class="active">姓名</label>
+                                <input type="text" class="form-control" id="RealName" name="RealName" data-validation="RealName" placeholder="Enter RealName">
                             </div>
 
                             <div class="form-group">
@@ -42,13 +42,13 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                Car Management
+                CARSALES Management
             </div>
             <div class="card-body" style="width:1220px">
                 <div class="table-responsive">
                     <div id="toolbar" class="btn-group">
                         <button id="btn_add" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增车辆
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增销售订单
                         </button>
                         <button id="btn_del" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-delete" aria-hidden="true"></span>删除
@@ -68,7 +68,7 @@
 
             method: 'post',
             contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-            url: "/T_Base_Car/getlistByPage",//要请求数据的文件路径
+            url: "/T_Base_SalesOrder/getlistByPage",//要请求数据的文件路径
 
 
             showRefresh: true,//刷新按钮
@@ -119,7 +119,7 @@
                     pageSize: tempPageSize,//页大小
                     pageNumber: tempPageNumber,//页码
                     search: params.searchText,
-                    Brand: $("#Brand").val(),
+                    RealName: $("#RealName").val(),
                     Carmodel: $("#Carmodel").val(),
                     sortName: params.sortName,
                     sortOrder: params.sortOrder
@@ -139,22 +139,13 @@
                     title: 'Id',
                     field: 'Id',
                     sortable: true,
-                    width: '70%'
-                },
-
-                {
-                    title: '品牌',
-                    field: 'Brand',
-                    width: '100%',
-                    sortable: true,
-                    editable: true
-
+                    width: '60%'
                 },
                 {
                     title: '车型',
                     formatter: function (value, row, index) {
                         return [
-                            row.Carmodel +' '+ row.Modeldetail
+                            row.Car.Carmodel +' '+ row.Car.Modeldetail
                         ].join('');
                     },
                     width: '180%',
@@ -162,135 +153,60 @@
                     editable: true
                 },
                 {
-                    title: '价格',
-                    field: 'Price',
-                    width:'100%',
+                    title: '单价',
+                    field: 'Car.Price',
                     sortable: true,
-                    editable: true
-
+                    width: '60%'
                 },
                 {
-                    title: '库存',
-                    field: 'Stock',
+                    title: '数量',
+                    field: 'Amount',
+                    sortable: true,
+                    width: '60%'
+                },
+                {
+                    title: '总价',
+                    field: 'TotalPrice',
+                    sortable: true,
+                    width: '60%'
+                },
+                {
+                    title: '时间',
+                    formatter: function (value, row, index) {
+                        var timeSpan = row.Dtime.replace('Date', '').replace('(', '').replace(')', '').replace(/\//g, '');
+                        var d = new Date(parseInt(timeSpan));
+                        return d.toLocaleDateString();
+                    },
                     width: '100%',
                     sortable: true,
                     editable: true
 
                 },
-
                 {
-                    title: '颜色',
-                    width: '80%',
-                    formatter: function (value, row, index) {
-                        if (row.Color == 0) {
-                            return [
-                                '白色',
-                            ].join('');
-                        }
-                        else if (row.Color == 1) {
-                            return [
-                                '黑色',
-                            ].join('');
-                        }
-                        else if (row.Color == 2){
-                            return [
-                                '红色',
-                            ].join('');
-                        }
-                        else if (row.Color == 3) {
-                            return [
-                                '蓝色',
-                            ].join('');
-                        }
-                        else if (row.Color == 4) {
-                            return [
-                                '灰色',
-                            ].join('');
-                        }
-                    },
-                    sortable: false,
-                    editable: true
-
-                },
-                {
-                    title: '图片',
-                    formatter: function (value, row, index) {
-                        return [
-                            '<a href=' + row.Image + '><img src=' + row.Image + ' width="44" height="44" /></a>'
-                        ].join('');
-                    },
-                    width:'150%'
-                },
-                {
-                    title: '级别',
+                    title: '姓名',
+                    field: 'User.RealName',
                     editable: true,
-                    field: 'CarParameter.Level',
                     visible: true,
-                    width: '100%'
+                    width: '90%'
                 },
                 {
-                    title: '发动机',
-                    field: 'CarParameter.Engine',
+                    title: '手机号',
+                    field: 'User.Phonenumber',
                     editable: true,
                     visible: true,
                     width: '100%'
-                },
+                },               
                 {
-                    title: '动力类型',
-                    field: 'CarParameter.Powertype',
+                    title: '销售员',
+                    field: 'Seller',
                     editable: true,
-                    visible: false,
+                    visible: true,
                     width: '100%'
-                },
-                {
-                    title: '变速箱',
-                    field: 'CarParameter.Gearbox',
-                    editable: true,
-                    visible: false,
-                    width: '100%'
-                },
-                {
-                    title: '长×宽×高(mm)',
-                    field: 'CarParameter.LWG',
-                    editable: true,
-                    visible: false,
-                    width: '150%'
-                },
-                {
-                    title: '车身结构',
-                    field: 'CarParameter.Bodystructure',
-                    editable: true,
-                    visible: false,
-                    width: '100%'
-                },
-                {
-                    title: '上市年份',
-                    field: 'CarParameter.Listingyear',
-                    editable: true,
-                    visible: false,
-                    width: '100%'
-                },
-                {
-                    title: '最高车速(km/h)',
-                    field: 'CarParameter.Topspeed',
-                    editable: true,
-                    visible: false,
-                    width: '150%'
-                },
-                {
-                    title: '0-100加速时间(s)',
-                    field: 'CarParameter.accelerate',
-                    editable: true,
-                    visible: false,
-                    width: '150%'
                 },
                 {
                     title: '操作',
                     width: '150%',
                     formatter: function (value, row, index) {
-                        //var delHtml = '<a onclick="del(' + row.Id + ')">删除</a>';
-                        //var editHtml = '<a onclick="edit(' + row.Id + ')">编辑</a>';
-                        //return delHtml + " | " + editHtml;
                         return [
                             '<button id="bind" type="button" class="btn btn-default btn-sm">删除</button>',
                             '<button id="unbind" type="button" class="btn btn-default btn-sm">编辑</button>',
@@ -298,7 +214,7 @@
                     },
                     events: {
                         "click #bind": function (e, value, row, index) {
-                            del(row.Id, row.BasicparameterId);
+                            del(row.Id);
                         },
                         "click #unbind": function (e, value, row, index) {
                             edit(row.Id);
@@ -314,13 +230,13 @@
             $("#tbList").bootstrapTable('refresh');
         });
 
-    function del(id, BasicparameterId) {
+    function del(id) {
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_Car/Delete",
+                url: "/T_Base_SalesOrder/Delete",
                 dataType: "json",
-                data: { id: id, BasicparameterId: BasicparameterId },
+                data: { id: id},
                 success: function (result) {
                     //****
                     if (result.code == 1) {
@@ -349,23 +265,18 @@
                 $('#tbList').bootstrapTable('getSelections'),
                 function (row) { return row.Id }
             );
-            var BasicparameterId = $.map(
-                $('#tbList').bootstrapTable('getSelections'),
-                function (row) { return row.BasicparameterId }
-            );
             if (ids.length == 0) {
                 alert("未选中");
                 return;
             }
             var oldids = ids;
             ids = ids.join(",");
-            BasicparameterIds = BasicparameterId.join(",");
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_Car/Deletes",
+                url: "/T_Base_SalesOrder/Deletes",
                 dataType: "json",
-                data: { ids: ids, BasicparameterIds: BasicparameterIds },
+                data: { ids: ids},
                 success: function (result) {
                     //****
                     if (result.code == 1) {
@@ -393,10 +304,10 @@
         });
 
         function edit(id) {
-            window.location.href = "/T_Base_Car/edit?id=" + id;
+            window.location.href = "/T_Base_SalesOrder/edit?id=" + id;
         }
         $("#btn_add").click(function () {
-            window.location.href = "/T_Base_Car/add";
+            window.location.href = "/T_Base_SalesOrder/add";
         })
 </script>
 

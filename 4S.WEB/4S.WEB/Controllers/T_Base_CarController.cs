@@ -11,6 +11,11 @@ namespace _4S.WEB.Controllers
         // GET: T_Base_Car
         public ActionResult List()
         {
+            if (Session["LoginIn"] == null)
+            {
+                return Redirect("/home/login");
+            }
+            ViewBag.data = Session["LoginIn"];
             return View();
         }
 
@@ -50,6 +55,11 @@ namespace _4S.WEB.Controllers
 
         public ActionResult Add()
         {
+            if (Session["LoginIn"] == null)
+            {
+                return Redirect("/home/login");
+            }
+            ViewBag.data = Session["LoginIn"];
             return View("add");
         }
 
@@ -70,10 +80,11 @@ namespace _4S.WEB.Controllers
 
         public ActionResult Edit(int id)
         {
-            //if (Session["LoginIn"] == null)
-            //{
-            //    return Redirect("/home/login");
-            //}
+            if (Session["LoginIn"] == null)
+            {
+                return Redirect("/home/login");
+            }
+            ViewBag.data = Session["LoginIn"];
             Model.T_Base_Car model = new Model.T_Base_Car();
             BLL.T_Base_Car bll = new BLL.T_Base_Car();
             model = bll.GetModel(id);

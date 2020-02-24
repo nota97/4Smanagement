@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="T_Base_Car.cs" />
+    <Compile Include="T_Base_CarPart.cs" />
+    <Compile Include="T_Base_CarPartSales.cs" />
+    <Compile Include="T_Base_SalesOrder.cs" />
+    <Compile Include="T_Base_Service.cs" />
+    <Compile Include="T_Base_Testdrive.cs" />
     <Compile Include="T_Base_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

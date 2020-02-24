@@ -149,6 +149,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\T_Base_CarController.cs" />
+    <Compile Include="Controllers\T_Base_CarPartController.cs" />
+    <Compile Include="Controllers\T_Base_CarPartSalesController.cs" />
+    <Compile Include="Controllers\T_Base_SalesOrderController.cs" />
+    <Compile Include="Controllers\T_Base_ServiceController.cs" />
+    <Compile Include="Controllers\T_Base_TestdriveController.cs" />
     <Compile Include="Controllers\T_Base_UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3765,6 +3770,21 @@
     <Content Include="Views\T_Base_Car\List.cshtml" />
     <Content Include="Views\T_Base_Car\Add.cshtml" />
     <Content Include="Views\T_Base_Car\Edit.cshtml" />
+    <Content Include="Views\T_Base_CarPart\List.cshtml" />
+    <Content Include="Views\T_Base_CarPart\Add.cshtml" />
+    <Content Include="Views\T_Base_CarPart\Edit.cshtml" />
+    <Content Include="Views\T_Base_Service\List.cshtml" />
+    <Content Include="Views\T_Base_Service\Add.cshtml" />
+    <Content Include="Views\T_Base_Service\Edit.cshtml" />
+    <Content Include="Views\T_Base_Testdrive\List.cshtml" />
+    <Content Include="Views\T_Base_Testdrive\Add.cshtml" />
+    <Content Include="Views\T_Base_Testdrive\Edit.cshtml" />
+    <Content Include="Views\T_Base_SalesOrder\List.cshtml" />
+    <Content Include="Views\T_Base_SalesOrder\Add.cshtml" />
+    <Content Include="Views\T_Base_SalesOrder\Edit.cshtml" />
+    <Content Include="Views\T_Base_CarPartSales\List.cshtml" />
+    <Content Include="Views\T_Base_CarPartSales\Add.cshtml" />
+    <Content Include="Views\T_Base_CarPartSales\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

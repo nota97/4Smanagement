@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>新增整车销售订单</h1>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead">
+                            Click "Validate" below to see the validation in action
+                        </p>
+                        <form action="" id="formAdd">
+                            <div class="form-group">
+                                <label for="CarId" class="active">汽车Id</label>
+                                <input type="text" class="form-control" name="CarId" id="CarId" data-validation="length alphanumeric"
+                                       data-validation-length="3-12"
+                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="CarId">
+                            </div>
+                            <div class="form-group">
+                                <label for="Amount" class="active">数量</label>
+                                <input type="text" class="form-control" id="Amount" name="Amount" data-validation="strength" placeholder="Amount">
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <label for="hour-field">时间</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend-1">
+                                            <i class="batch-icon batch-icon-clock"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="date form-control" name="Dtime" id="hour-field" placeholder="YYYY/MM/DD">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="UserId" class="active">用户Id</label>
+                                <input type="text" class="form-control" id="UserId" name="UserId" data-validation="strength" placeholder="UserId">
+                            </div>
+                            <div class="form-group">
+                                <label for="Seller" class="active">销售员</label>
+                                <input type="text" class="form-control" name="Seller" id="Seller" placeholder="Seller">
+                            </div>
+                            <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">Validate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <footer>
+            Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript">
+        function serializeObject(form) {
+            var o = {};
+            var a = $(form).serializeArray();
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+        function AddSave() {
+
+            //序列化form
+            var data = serializeObject("#formAdd");
+
+            $.ajax({
+
+                type: "post",
+
+                dataType: "json",
+
+                url: "/T_Base_SalesOrder/addsave",
+
+                data: JSON.stringify(data),
+
+                contentType: "application/json;charset=utf-8",
+
+                success: function (result) {
+                    if (result.code == 1) {
+                        alert(result.message);
+                        window.location.href = "List";
+                        
+                    } else {
+                        alert(result.message);
+                        //处理错误
+                    }
+                },
+                 error: function (msg) {
+                    alert('通讯失败');
+                }
+            });
+        }
+</script>
+
+

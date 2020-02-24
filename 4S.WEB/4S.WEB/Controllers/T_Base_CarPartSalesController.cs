@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace _4S.WEB.Controllers
 {
-    public class T_Base_UserController : Controller
+    public class T_Base_CarPartSalesController : Controller
     {
-        // GET: T_Base_User
+        // GET: T_Base_CarPartSales
         public ActionResult List()
         {
             if (Session["LoginIn"] == null)
@@ -16,17 +16,13 @@ namespace _4S.WEB.Controllers
                 return Redirect("/home/login");
             }
             ViewBag.data = Session["LoginIn"];
-            BLL.T_Base_User bllUser = new BLL.T_Base_User();
-            List<Model.T_Base_User> lst = bllUser.GetAllList();
-
-            ViewBag.lst = lst;
             return View();
         }
 
-        public JsonResult getlistByPage(int pageSize, int pageNumber, string sortName, string sortOrder, string search = "", string Email = "", string LoginName = "")
+        public JsonResult getlistByPage(int pageSize, int pageNumber, string sortName, string sortOrder, string search = "", string RealName = "", string Name = "")
         {
-            BLL.T_Base_User bll = new BLL.T_Base_User();
-            List<Model.T_Base_User> lst = bll.GetlistByPage(pageSize, pageNumber, search, sortName, sortOrder, Email, LoginName);
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
+            List<Model.T_Base_CarPartSales> lst = bll.GetlistByPage(pageSize, pageNumber, search, sortName, sortOrder, RealName, Name);
             int totalcount = bll.GetCount();
             var result = new { rows = lst, total = totalcount };
             return Json(result);
@@ -34,9 +30,9 @@ namespace _4S.WEB.Controllers
 
         public JsonResult Delete(int id)
         {
-            BLL.T_Base_User bll = new BLL.T_Base_User();
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
             int result = bll.Delete(id);
-            if (result > 0)
+            if (result > 1)
             {
                 return Json(new { code = 1, message = "删除成功" });
             }
@@ -47,9 +43,9 @@ namespace _4S.WEB.Controllers
 
         public JsonResult Deletes(string ids)
         {
-            BLL.T_Base_User bll = new BLL.T_Base_User();
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
             int result = bll.Deletes(ids);
-            if (result > 0)
+            if (result >= 2)
             {
                 return Json(new { code = 1, message = "删除成功" });
             }
@@ -67,14 +63,18 @@ namespace _4S.WEB.Controllers
             return View("add");
         }
 
-        public JsonResult AddSave(Model.T_Base_User model)
+        public JsonResult AddSave(Model.T_Base_CarPartSales model)
         {
             //处理
-            BLL.T_Base_User bll = new BLL.T_Base_User();
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
             int result = bll.Add(model);
             if (result >= 1)
             {
                 return Json(new { code = 1, message = "插入成功" });
+            }
+            else if (result == -1)
+            {
+                return Json(new { code = 0, message = "库存不足" });
             }
             else
             {
@@ -89,20 +89,24 @@ namespace _4S.WEB.Controllers
                 return Redirect("/home/login");
             }
             ViewBag.data = Session["LoginIn"];
-            Model.T_Base_User model = new Model.T_Base_User();
-            BLL.T_Base_User bll = new BLL.T_Base_User();
+            Model.T_Base_CarPartSales model = new Model.T_Base_CarPartSales();
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
             model = bll.GetModel(id);
             ViewBag.model = model;
             return View();
         }
 
-        public JsonResult EditSave(Model.T_Base_User model)
+        public JsonResult EditSave(Model.T_Base_CarPartSales model)
         {
-            BLL.T_Base_User bll = new BLL.T_Base_User();
+            BLL.T_Base_CarPartSales bll = new BLL.T_Base_CarPartSales();
             int result = bll.Update(model);
             if (result > 0)
             {
                 return Json(new { code = 1, message = " 修改成功" });
+            }
+            else if (result == -1)
+            {
+                return Json(new { code = 0, message = "修改失败,库存不足" });
             }
             else
                 return Json(new { code = 0, message = "修改失败" });

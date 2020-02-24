@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>新增配件</h1>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead">
+                            Click "Validate" below to see the validation in action
+                        </p>
+                        <form action="" id="formAdd">
+                            <div class="form-group">
+                                <label for="Name" class="active">配件名称</label>
+                                <input type="text" class="form-control" id="Name" name="Name" data-validation="strength" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Brand" class="active">品牌</label>
+                                <input type="text" class="form-control" name="Brand" id="Brand" data-validation="length alphanumeric"
+                                       data-validation-length="3-12"
+                                       data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="Brand">
+                            </div>
+                            <div class="form-group">
+                                <label for="Price" class="active">价格(单位：元)</label>
+                                <input type="text" class="form-control" id="Price" name="Price" placeholder="Price">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Stock" class="active">库存</label>
+                                <input type="text" class="form-control" name="Stock" id="Stock" placeholder="Stock">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Applicable" class="active">适用车型</label>
+                                <input type="text" class="form-control" name="Applicable" id="Applicable" placeholder="Level">
+                            </div>
+                            <div class="form-group">
+                                <label for="Note" class="active">备注</label>
+                                <input type="text" class="form-control" name="Note" id="Note" placeholder="Engine">
+                            </div>
+                            <div class="form-group">
+                                <label for="Picture" class="active">图片</label>
+                                @*<textarea class="form-control" name="Image" id="Image" rows="3"></textarea>*@
+                                <textarea class="form-control load-ckeditor" name="Picture" id="Picture" rows="30"></textarea>
+
+                            </div>
+                            <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">Validate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <footer>
+            Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+        </footer>
+    </div>
+</div>
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/quillpro/assets/plugins/ckeditor/adapters/jquery.js"></script>
+@*<script type="text/javascript" src="/quillpro/assets/demo/js/forms-extra.js"></script>*@
+
+
+<script type="text/javascript">
+    function serializeObject(form) {
+        var o = {};
+        var a = $(form).serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+    function AddSave() {
+
+        //序列化form
+        var data = serializeObject("#formAdd");
+        console.log(data['Picture']);
+        console.log(data['Picture'].split('"')[3]);
+        data['Picture'] = data['Picture'].split('"')[3];
+        console.log(JSON.stringify(data));
+
+        $.ajax({
+
+            type: "post",
+
+            dataType: "json",
+
+            url: "/T_Base_CarPart/addsave",
+
+            data: JSON.stringify(data),
+
+            contentType: "application/json;charset=utf-8",
+
+            success: function (result) {
+                if (result.code == 1) {
+                    alert(result.message);
+                    window.location.href = "List";
+                    //self.parent.x_tab_reload("T_Base_Book_List");
+                    //self.parent.x_tab_delete("addbook");
+                    //self.parent.x_tab_reload("T_Base_Book_List");
+
+                    //处理
+                } else {
+                    alert(message);
+                    //处理错误
+                }
+
+            },
+            error: function (msg) {
+                alert('通讯失败');
+            }
+        });
+    }
+</script>
+

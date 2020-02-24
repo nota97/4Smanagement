@@ -1,6 +1,6 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "List";
-    List<_4S.Model.T_Base_User> lst = ViewBag.lst;
 }
 
 <style type="text/css">
@@ -8,35 +8,35 @@
         table-layout: fixed;
         word-break: break-all;
     }
-</style>  
+</style>
 <div class="row mb-5">
-     <div class="col-md-12">
-          <div class="card">
-               <div class="card-body">
-                   <div class="row">
-                       <div class="col-lg-12">
-                          <p class="lead">
-                               高级查询
-                           </p>
-                           <form action="" id="registration-form">
-                                <div class="form-group">
-                                    <label for="email" class="active">邮箱地址</label>
-                                    <input type="email" class="form-control" id="Email" name="Email" data-validation="Email" placeholder="Enter Email">
-                                </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead">
+                            高级查询
+                        </p>
+                        <form action="" id="registration-form">
+                            <div class="form-group">
+                                <label for="Brand" class="active">品牌</label>
+                                <input type="text" class="form-control" id="Brand" name="Brand" data-validation="Email" placeholder="Enter Brand">
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="username" class="active">登录名</label>
-                                    <input type="text" class="form-control" name="LoginName" id="LoginName" data-validation="length alphanumeric"
-                                           data-validation-length="3-12"
-                                           data-validation-error-msg="LoginName has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
-                                </div>
-                                <button id="validate" type="button" class="btn btn-primary">Validate</button>
-                           </form>
-                       </div>
+                            <div class="form-group">
+                                <label for="Name" class="active">商品名称</label>
+                                <input type="text" class="form-control" name="Name" id="Name" data-validation="length alphanumeric"
+                                       data-validation-length="3-12"
+                                       data-validation-error-msg="LoginName has to be an alphanumeric value (3-12 chars)" placeholder="Name">
+                            </div>
+                            <button id="validate" type="button" class="btn btn-primary">Validate</button>
+                        </form>
                     </div>
                 </div>
-          </div>
-     </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -44,87 +44,22 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                  User Management
+                CarPart Management
             </div>
-            <div class="card-body">
+            <div class="card-body" style="width:1220px">
                 <div class="table-responsive">
                     <div id="toolbar" class="btn-group">
                         <button id="btn_add" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增用户
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增配件
                         </button>
                         <button id="btn_del" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-delete" aria-hidden="true"></span>删除
                         </button>
                     </div>
                     <table id="tbList" class="table"></table>
-                    @*<div class="card-table table-responsive">
-                <table id="tbList" class="table table-hover align-middle">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Member</th>
-                            <th>Email</th>
-                            <th class="text-center">Status</th>
-                            <th>Phone</th>
-                            <th class="text-right">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var item in lst)
-                            {
-                                <tr>
-                                    <td>
-                                        <div class="media">
-                                            <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
-                                                <img src="/static/assets/img/profile-pic.jpg" width="44" height="44">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="heading mt-1">
-                                                    @item.LoginName
-                                                </div>
-                                                <div class="subtext">NO.@item.Id</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">@item.Email</a>
-                                    </td>
-                                    <td class="text-center">
-                                        @{ if (@item.Type == 0)
-                                            {
-                                                <span class="badge badge-primary">管理员</span>
-                                            }
-                                            else if (@item.Type == 1)
-                                            {
-                                                <span class="badge badge-success">普通用户</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge badge-danger">会员用户</span>
-                                            }
-                                        }
-                                    </td>
-                                    <td>@item.Phonenumber</td>
-                                    <td class="text-right">
-                                        <a class="btn btn-primary">
-                                            <i class="batch-icon batch-icon-eye"></i>
-                                        </a>
-                                        <a class="btn btn-success">
-                                            <i class="batch-icon batch-icon-bin-alt-2"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-
-
-                        }
-
-                    </tbody>
-                </table>
-            </div>*@
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -135,9 +70,9 @@
 
             method: 'post',
             contentType: "application/x-www-form-urlencoded",//必须要有！！！！
-            url: "/T_Base_User/getlistByPage",//要请求数据的文件路径
+            url: "/T_Base_CarPart/getlistByPage",//要请求数据的文件路径
 
-            
+
             showRefresh: true,//刷新按钮
             showColumns: true,
             striped: true, //是否显示行间隔色
@@ -186,8 +121,8 @@
                     pageSize: tempPageSize,//页大小
                     pageNumber: tempPageNumber,//页码
                     search: params.searchText,
-                    Email: $("#Email").val(),
-                    LoginName: $("#LoginName").val(),
+                    Brand: $("#Brand").val(),
+                    Name: $("#Name").val(),
                     sortName: params.sortName,
                     sortOrder: params.sortOrder
                 }
@@ -210,66 +145,57 @@
                 },
 
                 {
-                    title: '用户名',
-                    field: 'LoginName',
+                    title: '配件名称',
+                    field: 'Name',
                     width: '150%',
                     sortable: true,
                     editable: true
 
                 },
                 {
-                    title: '真实姓名',
-                    field: 'RealName',
-                    width: '150%',
+                    title: '品牌',
+                    field: 'Brand',
+                    width: '100%',
                     sortable: true,
                     editable: true
                 },
                 {
-                    title: '电子邮箱',
-                    field: 'Email',
-                    width:'180%',
+                    title: '价格',
+                    field: 'Price',
+                    width:'100%',
                     sortable: true,
                     editable: true
 
                 },
                 {
-                    title: '手机号',
-                    field: 'Phonenumber',
+                    title: '库存',
+                    field: 'Stock',
+                    width: '70%',
+                    sortable: true,
+                    editable: true
+
+                },
+                {
+                    title: '适用车型',
+                    field: 'Applicable',
                     width: '180%',
                     sortable: true,
                     editable: true
 
                 },
-
-                {
-                    title: '用户类型',
-                    width: '80%',
-                    formatter: function (value, row, index) {
-                        if (row.Type == 0) {
-                            return [
-                                '<span class="badge badge-primary">管理员</span>',
-                            ].join('');
-                        }
-                        else if (row.Type == 1) {
-                            return [
-                                '<span class="badge badge-success">普通用户</span>',
-                            ].join('');
-                        }
-                        else {
-                            return [
-                                '<span class="badge badge-danger">会员用户</span>',
-                            ].join('');
-                        }   
-                    }
-                    //field: 'Type',
-                    //sortable: true,
-                    //editable: true
-
-                },
                 {
                     title: '备注',
-                    field: 'Remark',
-                    width:'150%'
+                    field: 'Note',
+                    width:'180%'
+                },
+                {
+                    title: '图片',
+                    formatter: function (value, row, index) {
+                        return [
+                            '<a href=' + row.Picture + '><img src=' + row.Picture + ' width="44" height="44" /></a>'
+                        ].join('');
+                    },
+                    width: '120%'
                 },
                 {
                     title: '操作',
@@ -282,10 +208,10 @@
                             '<button id="bind" type="button" class="btn btn-default btn-sm">删除</button>',
                             '<button id="unbind" type="button" class="btn btn-default btn-sm">编辑</button>',
                         ].join('');
-                    },   
+                    },
                     events: {
                         "click #bind": function (e, value, row, index) {
-                            del(row.Id);                       
+                            del(row.Id);
                         },
                         "click #unbind": function (e, value, row, index) {
                             edit(row.Id);
@@ -294,10 +220,10 @@
 
                 }
             ],
-           
+
         });
         $("#validate").click(function () {
-            //parent.document["tblist"].$table.bootstrapTable('refresh')           
+            //parent.document["tblist"].$table.bootstrapTable('refresh')
             $("#tbList").bootstrapTable('refresh');
         });
 
@@ -306,7 +232,7 @@
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_User/Delete",
+                url: "/T_Base_CarPart/Delete",
                 dataType: "json",
                 data: { id: id },
                 success: function (result) {
@@ -346,7 +272,7 @@
             $.ajax({
 
                 type: "post",
-                url: "/T_Base_User/Deletes",
+                url: "/T_Base_CarPart/Deletes",
                 dataType: "json",
                 data: { ids: ids },
                 success: function (result) {
@@ -377,14 +303,11 @@
         });
 
         function edit(id) {
-            //self.parent.x_tab_add("用户编辑", "/T_Base_Book/edit?id=" + id, "useredit");
-            window.location.href = "/T_Base_User/edit?id=" + id;
+            window.location.href = "/T_Base_CarPart/edit?id=" + id;
         }
         $("#btn_add").click(function () {
-            //self.parent.x_tab_add("新增书籍", "/T_Base_User/add", "adduser");
-            window.location.href = "/T_Base_User/add";
+            window.location.href = "/T_Base_CarPart/add";
         })
 </script>
-
 
 
