@@ -57,71 +57,7 @@
                         </button>
                     </div>
                     <table id="tbList" class="table"></table>
-                    @*<div class="card-table table-responsive">
-                <table id="tbList" class="table table-hover align-middle">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Member</th>
-                            <th>Email</th>
-                            <th class="text-center">Status</th>
-                            <th>Phone</th>
-                            <th class="text-right">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var item in lst)
-                            {
-                                <tr>
-                                    <td>
-                                        <div class="media">
-                                            <div class="profile-picture bg-gradient bg-primary has-message float-right d-flex mr-3">
-                                                <img src="/static/assets/img/profile-pic.jpg" width="44" height="44">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="heading mt-1">
-                                                    @item.LoginName
-                                                </div>
-                                                <div class="subtext">NO.@item.Id</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#">@item.Email</a>
-                                    </td>
-                                    <td class="text-center">
-                                        @{ if (@item.Type == 0)
-                                            {
-                                                <span class="badge badge-primary">管理员</span>
-                                            }
-                                            else if (@item.Type == 1)
-                                            {
-                                                <span class="badge badge-success">普通用户</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge badge-danger">会员用户</span>
-                                            }
-                                        }
-                                    </td>
-                                    <td>@item.Phonenumber</td>
-                                    <td class="text-right">
-                                        <a class="btn btn-primary">
-                                            <i class="batch-icon batch-icon-eye"></i>
-                                        </a>
-                                        <a class="btn btn-success">
-                                            <i class="batch-icon batch-icon-bin-alt-2"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-
-
-                        }
-
-                    </tbody>
-                </table>
-            </div>*@
+                    
                 </div>
             </div>
             
@@ -325,8 +261,6 @@
                 error: function () {
                     alert("通讯失败");
                 }
-
-
             });
         }
 

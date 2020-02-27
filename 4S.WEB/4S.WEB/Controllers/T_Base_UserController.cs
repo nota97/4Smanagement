@@ -42,7 +42,6 @@ namespace _4S.WEB.Controllers
             }
             else
                 return Json(new { code = 0, message = "删除失败" });
-
         }
 
         public JsonResult Deletes(string ids)
@@ -76,9 +75,32 @@ namespace _4S.WEB.Controllers
             {
                 return Json(new { code = 1, message = "插入成功" });
             }
+            else if (result == -1)
+            {
+                return Json(new { code = 0, message = "用户名已存在" });
+            }
             else
             {
                 return Json(new { code = 0, message = "插入失败" });
+            }
+        }
+
+        public JsonResult SignUpSave(Model.T_Base_User model)
+        {
+            //处理
+            BLL.T_Base_User bll = new BLL.T_Base_User();
+            int result = bll.SignUp(model);
+            if (result >= 1)
+            {
+                return Json(new { code = 1, message = "注册成功" });
+            }
+            else if (result==-1)
+            {
+                return Json(new { code = 0, message = "用户名已存在" });
+            }
+            else
+            {
+                return Json(new { code = 0, message = "注册失败" });
             }
         }
 

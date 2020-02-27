@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="home.cs" />
     <Compile Include="T_Base_Car.cs" />
     <Compile Include="T_Base_CarPart.cs" />
     <Compile Include="T_Base_CarPartSales.cs" />

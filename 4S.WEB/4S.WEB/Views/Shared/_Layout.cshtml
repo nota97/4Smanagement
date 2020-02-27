@@ -1,43 +1,262 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{ 
+    string loginname = ViewBag.data;
+}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.png">
+
+    <title>QuillPro - Bootstrap 4 Dashboard Template</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
+          rel="stylesheet">
+
+    <!-- CSS - REQUIRED - START -->
+    <!-- Batch Icons -->
+
+    <link rel="stylesheet" href="/static/assets/fonts/batch-icons/css/batch-icons.css">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap/mdb.min.css">
+    <!-- Custom Scrollbar -->
+    <link rel="stylesheet" href="/static/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Hamburger Menu -->
+    <link rel="stylesheet" href="/static/assets/css/hamburgers/hamburgers.css">
+
+    <!-- CSS - REQUIRED - END -->
+    <!-- CSS - OPTIONAL - START -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <!-- JVMaps -->
+    <link rel="stylesheet" href="/static/assets/plugins/jvmaps/jqvmap.min.css">
+    <!-- CSS - OPTIONAL - END -->
+    <!-- QuillPro Styles -->
+    <link rel="stylesheet" href="/static/assets/css/quillpro/quillpro.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar-sidebar-horizontal navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="#">
+                    <img src="/quillpro/assets/img/logo-dark.png" width="145" height="32.3" alt="QuillPro">
+                </a>
+                <button class="hamburger hamburger--slider" type="button" data-target=".sidebar-horizontal" aria-controls="sidebar-horizontal" aria-expanded="false" aria-label="Toggle Main Menu">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
                 </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                <!-- Added Mobile-Only Menu -->
+                <ul class="navbar-nav ml-auto mobile-only-control d-block d-sm-block d-md-block d-lg-none">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbar-notification-search-mobile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                            <i class="batch-icon batch-icon-search"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search-mobile">
+                            <li>
+                                <form class="form-inline my-2 my-lg-0 no-waves-effect">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">
+                                                <i class="batch-icon batch-icon-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
+
+                <!--  DEPRECATED CODE:
+                    <div class="navbar-collapse" id="navbarSupportedContent">
+                -->
+                <!-- USE THIS CODE Instead of the Commented Code Above -->
+                <!-- .collapse added to the element -->
+                <div class="collapse navbar-collapse" id="navbar-header-content">
+                    <ul class="navbar-nav navbar-language-translation mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbar-dropdown-menu-link" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                <i class="batch-icon batch-icon-book-alt-"></i>
+                                Chinese
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbar-dropdown-menu-link">
+                                <li><a class="dropdown-item" href="#">English</a></li>
+                                <li><a class="dropdown-item" href="#">Deutsche</a></li>
+                                <li><a class="dropdown-item" href="#">Español</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-notifications float-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbar-notification-search" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                <i class="batch-icon batch-icon-search"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search">
+                                <li>
+                                    <form class="form-inline my-2 my-lg-0 no-waves-effect">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>                       
+                    </ul>
+                    <ul class="navbar-nav ml-5 navbar-profile">
+                        <li class="nav-item dropdown">
+                            @if (@loginname == null)
+                            {
+                                <a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <div class="profile-name">
+                                        登录
+                                    </div>
+                                    <div class="profile-picture bg-gradient bg-primary has-message float-right">
+                                        <img src="/quillpro/assets/img/profile-pic.jpg" width="44" height="44">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
+                                    <li><a class="dropdown-item" href="/home/signup">Sign Up</a></li>
+                                    <li><a class="dropdown-item" href="/home/signin">Sign In</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                    <div class="profile-name">
+                                        @loginname
+                                    </div>
+                                    <div class="profile-picture bg-gradient bg-primary has-message float-right">
+                                        <img src="/quillpro/assets/img/profile-pic.jpg" width="44" height="44">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
+                                    <li><a class="dropdown-item" href="/home/profile">Profile</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="mail-inbox.html">
+                                            Messages
+                                            <span class="badge badge-danger badge-pill float-right">3</span>
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="profiles-member-profile.html">Settings</a></li>
+                                    <li><a class="dropdown-item" href="/home/signin" >Logout</a></li>
+                                </ul>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="right-column">
+                <nav class="sidebar-horizontal navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="navbar-collapse" id="navbar-header-menu-outer">
+                        <ul class="navbar-nav navbar-header-menu mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home/index">
+                                    <i class="batch-icon batch-icon-browser-alt"></i>
+                                    主页
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="batch-icon batch-icon-layout-content-left"></i>
+                                    车型报价
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="batch-icon batch-icon-star"></i>
+                                    维修服务
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home/Contact">
+                                    <i class="batch-icon batch-icon-store"></i>
+                                    公司介绍
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home/about">
+                                    <i class="batch-icon batch-icon-at"></i>
+                                    关于
+                                </a>
+                            </li>                        
+                        </ul>
+                    </div>
+                </nav>
+                <main class="main-content p-5" role="main">
+                    <div>
+                        @RenderBody()
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <footer>
+                                Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+                            </footer>
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+    
+    <!-- SCRIPTS - REQUIRED START -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- JQuery -->
+    <!-- Popper.js - Bootstrap tooltips -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/bootstrap.min.js"></script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/static/assets/js/bootstrap/mdb.min.js"></script>
+    <!-- Velocity -->
+    <script type="text/javascript" src="/static/assets/plugins/velocity/velocity.min.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/velocity/velocity.ui.min.js"></script>
+    <!-- Custom Scrollbar -->
+    <script type="text/javascript" src="/static/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- jQuery Visible -->
+    <script type="text/javascript" src="/static/assets/plugins/jquery_visible/jquery.visible.min.js"></script>
+    <!-- jQuery Visible -->
+    <script type="text/javascript" src="/static/assets/plugins/jquery_visible/jquery.visible.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="/static/assets/js/misc/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- SCRIPTS - REQUIRED END -->
+    <!-- SCRIPTS - OPTIONAL START -->
+    <!-- ChartJS -->
+    <script type="text/javascript" src="/static/assets/plugins/chartjs/chart.bundle.min.js"></script>
+    <!-- JVMaps -->
+    <script type="text/javascript" src="/static/assets/plugins/jvmaps/jquery.vmap.min.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/jvmaps/maps/jquery.vmap.usa.js"></script>
+    <!-- Image Placeholder -->
+    <script type="text/javascript" src="/static/assets/js/misc/holder.min.js"></script>
+    <!-- SCRIPTS - OPTIONAL END -->
+    <!-- QuillPro Scripts -->
+    <script type="text/javascript" src="/static/assets/js/scripts.js"></script>
+    <script type="text/javascript" src="/static/assets/js/i7system.js"></script>
 </body>
 </html>
+

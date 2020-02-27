@@ -109,6 +109,36 @@ namespace _4S.DAL
             return (Int32)count;
         }
 
+        public int GetUserId(string id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select UserId from T_Base_SalesOrder where id=" + id;
+            cm.Connection = co;
+
+            Object count = cm.ExecuteScalar();
+            co.Close();
+            return (Int32)count;
+        }
+
+        public int GetUserAmount(string id)
+        {
+
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select count(*) from T_Base_SalesOrder where UserId=" + id;
+            cm.Connection = co;
+
+            Object count = cm.ExecuteScalar();
+            co.Close();
+            return (Int32)count;
+        }
 
         public int Delete(int id)
         {
@@ -116,6 +146,15 @@ namespace _4S.DAL
             co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
             co.Open();
             int amount = GetAmount(id.ToString());
+            int UserId = GetUserId(id.ToString());
+            int flag = 0;
+            if (GetUserAmount(UserId.ToString()) < 2)
+            {
+                SqlCommand cd = new SqlCommand();
+                cd.CommandText = "update T_Base_User set Type=1 where Id=" + UserId.ToString();
+                cd.Connection = co;
+                flag = 1;
+            }
 
             SqlCommand cm = new SqlCommand();
             cm.CommandText = "delete from T_Base_SalesOrder where id=@id";
@@ -126,8 +165,8 @@ namespace _4S.DAL
             SqlCommand cn = new SqlCommand();
             cn.CommandText = "update T_Base_Car set Stock=Stock+"+amount.ToString()+" where Id="+carId.ToString();
             cn.Connection = co;
-
-            int result = cm.ExecuteNonQuery()+ cn.ExecuteNonQuery();
+         
+            int result = cm.ExecuteNonQuery()+ cn.ExecuteNonQuery()+flag ;
             co.Close();
             return result;
         }
@@ -211,7 +250,11 @@ namespace _4S.DAL
             cn.CommandText = "update T_Base_Car set Stock=Stock-" + amount.ToString() + " where Id=" + carId.ToString();
             cn.Connection = co;
 
-            int result = cm.ExecuteNonQuery()+cn.ExecuteNonQuery();
+            SqlCommand cd = new SqlCommand();
+            cd.CommandText = "update T_Base_User set Type=2 where Id=" + model.UserId.ToString();
+            cd.Connection = co;
+
+            int result = cm.ExecuteNonQuery()+cn.ExecuteNonQuery()+cd.ExecuteNonQuery();
             co.Close();
             return result;
         }
@@ -272,7 +315,11 @@ namespace _4S.DAL
             cn.CommandText = "update T_Base_Car set Stock=Stock+"+oldamount.ToString()+"-" + amount.ToString() + " where Id=" + carId.ToString();
             cn.Connection = co;
 
-            int result = cm.ExecuteNonQuery()+ cn.ExecuteNonQuery();
+            SqlCommand cd = new SqlCommand();
+            cd.CommandText = "update T_Base_User set Type=2 where Id=" + model.UserId.ToString();
+            cd.Connection = co;
+
+            int result = cm.ExecuteNonQuery()+ cn.ExecuteNonQuery()+ cd.ExecuteNonQuery();
             co.Close();
             return result;
         }

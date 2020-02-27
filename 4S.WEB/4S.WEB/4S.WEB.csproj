@@ -172,9 +172,18 @@
     <Content Include="Img\718_1.jpg" />
     <Content Include="Img\718_2.jpg" />
     <Content Include="Img\911_1.jpg" />
+    <Content Include="Img\car1.png" />
+    <Content Include="Img\car2.png" />
+    <Content Include="Img\car3.png" />
+    <Content Include="Img\car4.png" />
+    <Content Include="Img\car5.png" />
     <Content Include="Img\Cayenne1.jpg" />
     <Content Include="Img\Macan_1.jpg" />
+    <Content Include="Img\msg.png" />
+    <Content Include="Img\mymap.html" />
+    <Content Include="Img\people.png" />
     <Content Include="Img\s10823_420.jpg" />
+    <Content Include="Img\smallmap.html" />
     <Content Include="quillpro\assets\css\bootstrap\bootstrap-rtl.min.css" />
     <Content Include="quillpro\assets\css\bootstrap\bootstrap.min.css" />
     <Content Include="quillpro\assets\css\bootstrap\mdb-rtl.min.css" />
@@ -3785,6 +3794,10 @@
     <Content Include="Views\T_Base_CarPartSales\List.cshtml" />
     <Content Include="Views\T_Base_CarPartSales\Add.cshtml" />
     <Content Include="Views\T_Base_CarPartSales\Edit.cshtml" />
+    <Content Include="Views\Home\Add.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

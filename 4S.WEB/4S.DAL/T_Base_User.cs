@@ -131,10 +131,35 @@ namespace _4S.DAL
             return result;
         }
 
+        public List<String> GetLoginName()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            List<string> loginname = new List<string>();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select LoginName from T_Base_User";
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            while (dr.Read())
+            {
+                loginname.Add(Convert.ToString(dr["LoginName"]));
+            }
+            dr.Close();
+            co.Close();
+            return loginname;
+        }
+
         public int Add(Model.T_Base_User model)
         {
             //把数据存入数据库
             //ado.net插入数据库
+            List<string> list = GetLoginName();
+            if (list.Contains(model.LoginName.ToString()))
+            {
+                return -1;
+            }
             SqlConnection co = new SqlConnection();
             co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
             co.Open();
@@ -148,6 +173,35 @@ namespace _4S.DAL
             cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
             cm.Parameters.AddWithValue("@Type", model.Type);
             cm.Parameters.AddWithValue("@Remark", model.Remark);
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+        
+
+        public int SignUp(Model.T_Base_User model)
+        {
+            //把数据存入数据库
+            //ado.net插入数据库
+            List<string> list = GetLoginName();
+            if(list.Contains(model.LoginName.ToString()))
+            {
+                return -1;
+            }
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            int type = 1;
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "insert into T_Base_User (LoginName,PWD,RealName,Email,Phonenumber,Type) values (@LoginName, @PWD, @RealName, @Email, @Phonenumber,@Type)";
+            cm.Parameters.AddWithValue("@LoginName", model.LoginName);
+            cm.Parameters.AddWithValue("@PWD", model.PWD);
+            cm.Parameters.AddWithValue("@RealName", model.RealName);
+            cm.Parameters.AddWithValue("@Email", model.Email);
+            cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
+            cm.Parameters.AddWithValue("@Type", type);
             cm.Connection = co;
             int result = cm.ExecuteNonQuery();
             co.Close();

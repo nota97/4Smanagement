@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>新增员工</h1>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead">
+                            填写员工信息
+                        </p>
+                        <form action="" id="formAdd">
+                            <div class="form-group">
+                                <label for="realname" class="active">真实姓名</label>
+                                <input type="text" class="form-control" name="RealName" id="RealName" placeholder="RealName">
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneNumber" class="active">手机号</label>
+                                <input type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="PhoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="active">电子邮箱</label>
+                                <input type="email" class="form-control" id="Email" name="Email" data-validation="Email" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Office" class="active">职位</label>
+                                <input type="text" class="form-control" id="Office" name="Office" data-validation="Office" placeholder="Office">
+                            </div>
+                            <div class="form-group">
+                                <label for="EntryDate" class="active">入职时间</label>
+                                <input type="text" class="form-control" id="EntryDate" name="EntryDate" data-validation="EntryDate" placeholder="EntryDate">
+                            </div>
+                            <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">Validate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <footer>
+            Powered by - <a href="http://base5builder.com/?click_source=quillpro_footer_link" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript">
+        function serializeObject(form) {
+            var o = {};
+            var a = $(form).serializeArray();
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+        function AddSave() {
+
+            //序列化form
+            var data = serializeObject("#formAdd");
+
+            $.ajax({
+
+                type: "post",
+
+                dataType: "json",
+
+                url: "/home/addsave",
+
+                data: JSON.stringify(data),
+
+                contentType: "application/json;charset=utf-8",
+
+                success: function (result) {
+                    if (result.code == 1) {
+                        alert(result.message);
+                        window.location.href = "main";
+                       
+                    } else {
+                        alert(message);
+                        //处理错误
+                    }
+
+                },
+                 error: function (msg) {
+                    alert('通讯失败');
+                }
+            });
+        }
+</script>

@@ -51,6 +51,13 @@ namespace _4S.BLL
 
         }
 
+        public int SignUp(Model.T_Base_User model)
+        {
+            //记录日志
+            DAL.T_Base_User dal = new DAL.T_Base_User();
+            return dal.SignUp(model);
+        }
+
         public Model.T_Base_User GetModel(int id)
         {
             DAL.T_Base_User dal = new DAL.T_Base_User();
