@@ -42,6 +42,13 @@ namespace _4S.BLL
             return dal.Add(model);
         }
 
+        public int AddNew(Model.T_Base_Service model)
+        {
+            //记录日志
+            DAL.T_Base_Service dal = new DAL.T_Base_Service();
+            return dal.AddNew(model);
+        }
+
         public Model.T_Base_Service GetModel(int id)
         {
             DAL.T_Base_Service dal = new DAL.T_Base_Service();

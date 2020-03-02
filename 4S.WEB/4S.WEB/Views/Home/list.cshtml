@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "list";
+    List<_4S.Model.T_Base_Car> Car718 = ViewBag.Car718;
+    List<_4S.Model.T_Base_Car> Car911 = ViewBag.Car911;
+    List<_4S.Model.T_Base_Car> CarPanamera = ViewBag.CarPanamera;
+    List<_4S.Model.T_Base_Car> CarMacan = ViewBag.CarMacan;
+    List<_4S.Model.T_Base_Car> CarCayenne = ViewBag.CarCayenne;
+}
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <h2>车型概述</h2>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="v-pills-718-tab" data-toggle="pill" href="#v-pills-718" role="tab" aria-controls="v-pills-718" aria-selected="true">718</a>
+                                    <a class="nav-link" id="v-pills-911-tab" data-toggle="pill" href="#v-pills-911" role="tab" aria-controls="v-pills-911" aria-selected="false">911</a>
+                                    <a class="nav-link" id="v-pills-Panamera-tab" data-toggle="pill" href="#v-pills-Panamera" role="tab" aria-controls="v-pills-Panamera" aria-selected="false">Panamera</a>
+                                    <a class="nav-link" id="v-pills-Macan-tab" data-toggle="pill" href="#v-pills-Macan" role="tab" aria-controls="v-pills-Macan" aria-selected="false">Macan</a>
+                                    <a class="nav-link" id="v-pills-Cayenne-tab" data-toggle="pill" href="#v-pills-Cayenne" role="tab" aria-controls="v-pills-Cayenne" aria-selected="false">Cayenne</a>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-718" role="tabpanel" aria-labelledby="v-pills-718-tab">
+                                        <div class="row">
+                                            @foreach (var item in Car718)
+                                            {
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                                    <div class="card text-center">
+                                                        <a href="/home/detail?id=@item.Id">
+                                                            <img class="card-img-top" src="@item.Image" alt="Product Name" style="height:169px">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="height:40px">
+                                                                <a href="/home/detail?id=@item.Id">
+                                                                    @item.Carmodel @item.Modeldetail
+                                                                </a>
+                                                            </h5>
+                                                            <div class="price-block">
+                                                                <div class="price-new" style="color:red">¥@item.Price 万起*</div>                                                            
+                                                            </div>                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-911" role="tabpanel" aria-labelledby="v-pills-911-tab">
+                                        <div class="row">
+                                            @foreach (var item in Car911)
+                                            {
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                                    <div class="card text-center">
+                                                        <a href="/home/detail?id=@item.Id">
+                                                            <img class="card-img-top" src="@item.Image" alt="Product Name" style="height:169px">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="height:40px">
+                                                                <a href="/home/detail?id=@item.Id">
+                                                                    @item.Carmodel @item.Modeldetail
+                                                                </a>
+                                                            </h5>
+                                                            <div class="price-block">
+                                                                <div class="price-new" style="color:red">¥@item.Price 万起*</div>
+                                                            </div>                                                                                                                      
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-Panamera" role="tabpanel" aria-labelledby="v-pills-Panamera-tab">
+                                        <div class="row">
+                                            @foreach (var item in CarPanamera)
+                                            {
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                                    <div class="card text-center">
+                                                        <a href="/home/detail?id=@item.Id">
+                                                            <img class="card-img-top" src="@item.Image" alt="Product Name" style="height:169px">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="height:40px">
+                                                                <a href="/home/detail?id=@item.Id">
+                                                                    @item.Carmodel @item.Modeldetail
+                                                                </a>
+                                                            </h5>
+                                                            <div class="price-block">
+                                                                <div class="price-new" style="color:red">¥@item.Price 万起*</div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-Macan" role="tabpanel" aria-labelledby="v-pills-Macan-tab">
+                                        <div class="row">
+                                            @foreach (var item in CarMacan)
+                                            {
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                                    <div class="card text-center">
+                                                        <a href="/home/detail?id=@item.Id">
+                                                            <img class="card-img-top" src="@item.Image" alt="Product Name" style="height:169px">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="height:40px">
+                                                                <a href="/home/detail?id=@item.Id">
+                                                                    @item.Carmodel @item.Modeldetail
+                                                                </a>
+                                                            </h5>
+                                                            <div class="price-block">
+                                                                <div class="price-new" style="color:red">¥@item.Price 万起*</div>
+                                                            </div>                                                          
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-Cayenne" role="tabpanel" aria-labelledby="v-pills-Cayenne-tab">
+                                        <div class="row">
+                                            @foreach (var item in CarCayenne)
+                                            {
+                                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+                                                    <div class="card text-center">
+                                                        <a href="/home/detail?id=@item.Id">
+                                                            <img class="card-img-top" src="@item.Image" alt="Product Name" style="height:169px">
+                                                        </a>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title" style="height:64px">
+                                                                <a href="/home/detail?id=@item.Id">
+                                                                    @item.Carmodel @item.Modeldetail
+                                                                </a>
+                                                            </h5>
+                                                            <div class="price-block" >
+                                                                <div class="price-new" style="color:red;">¥@item.Price 万起*</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var url = location.href;
+    console.log(url);
+    var type = url.split('#')[1];
+    console.log(type);
+    $(document).ready(function () {
+        $('#v-pills-tab a[href="#' + type+'"]').tab('show');
+    });
+    
+</script>

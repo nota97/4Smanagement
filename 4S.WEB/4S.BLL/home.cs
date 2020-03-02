@@ -65,5 +65,35 @@ namespace _4S.BLL
             DAL.home dal = new DAL.home();
             return dal.GetSomeCars();
         }
+      
+        public List<Model.T_Base_Car> GetCars(string carmodel)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetCars(carmodel);
+        }
+
+        public Model.T_Base_Car GetCarDetail(int id)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetCarDetail(id);
+        }
+
+        public Model.T_Base_User PersonCenter(int id)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.PersonCenter(id);
+        }
+
+        public List<Model.T_Base_Service> GetPersonService(int id)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetPersonService(id);
+        }
+
+        public List<Model.T_Base_Testdrive> GetPersonReserve(int id)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetPersonReserve(id);
+        }
     }
 }

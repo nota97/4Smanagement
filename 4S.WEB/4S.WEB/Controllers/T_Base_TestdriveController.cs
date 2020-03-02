@@ -78,6 +78,21 @@ namespace _4S.WEB.Controllers
             }
         }
 
+        public JsonResult AddNew(Model.T_Base_Testdrive model)
+        {
+            //处理
+            BLL.T_Base_Testdrive bll = new BLL.T_Base_Testdrive();
+            int result = bll.AddNew(model);
+            if (result >= 1)
+            {
+                return Json(new { code = 1, message = "插入成功" });
+            }
+            else
+            {
+                return Json(new { code = 0, message = "预约失败" });
+            }
+        }
+
         public ActionResult Edit(int id)
         {
             if (Session["LoginIn"] == null)

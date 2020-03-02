@@ -136,6 +136,31 @@ namespace _4S.DAL
             return result;
         }
 
+        public int AddNew(Model.T_Base_Service model)
+        {
+            //把数据存入数据库
+            //ado.net插入数据库
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "insert into T_Base_Service (Brand,CarModel,Modeldetail,Price,FaultType,Appointment,DealSituation,Note,UserId) values (@Brand, @CarModel, @Modeldetail, @Price, @FaultType,@Appointment,@DealSituation,@Note,@UserId)";
+            cm.Parameters.AddWithValue("@Brand", model.Brand);
+            cm.Parameters.AddWithValue("@CarModel", model.CarModel);
+            cm.Parameters.AddWithValue("@Modeldetail", model.Modeldetail);
+            cm.Parameters.AddWithValue("@Price", 0);
+            cm.Parameters.AddWithValue("@FaultType", model.FaultType);
+            cm.Parameters.AddWithValue("@Appointment", model.Appointment);
+            cm.Parameters.AddWithValue("@DealSituation", 0);
+            cm.Parameters.AddWithValue("@Note", model.Note);
+            cm.Parameters.AddWithValue("@UserId", model.UserId);
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
         public Model.T_Base_Service GetModel(int id)
         {
             SqlConnection co = new SqlConnection();

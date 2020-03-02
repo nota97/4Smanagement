@@ -13,14 +13,16 @@
                             <img src="http://img1.xcarimg.com/PicLib/logo/bl88_160s.png" />
                             保时捷4S中心
                         </h1>
-                        <p class="lead">主营品牌保时捷</p>
+                        <p class="lead">
+                            主营品牌保时捷
+                        </p>
                         <hr class="my-4">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-secondary">718</button>
-                            <button type="button" class="btn btn-secondary">911</button>
-                            <button type="button" class="btn btn-secondary">Cayenne</button>
-                            <button type="button" class="btn btn-secondary">Macan</button>
-                            <button type="button" class="btn btn-secondary">Panamera</button>
+                            <button type="button" class="btn btn-secondary" onclick="Jumpto718()">718</button>
+                            <button type="button" class="btn btn-secondary" onclick="Jumpto911()">911</button>
+                            <button type="button" class="btn btn-secondary" onclick="JumptoCayenne()">Cayenne</button>
+                            <button type="button" class="btn btn-secondary" onclick="JumptoMacan()">Macan</button>
+                            <button type="button" class="btn btn-secondary" onclick="JumptoPanamera()">Panamera</button>
                         </div>
                     </div>
                 </div>
@@ -35,37 +37,47 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block img-fluid" src="/Img/car1.png" alt="First slide" style="width:900px;height:500px">
+                                <a href="/home/list#v-pills-718">
+                                    <img class="d-block img-fluid" src="https://files.porsche.cn/filestore/galleryimagerwd/multimedia/none/jdp-2016-982-718-c7-gallery-exterior-07/zoom2/de8c3f5b-43c4-11e8-bbc5-0019999cd470;sP;twebp/porsche-zoom2.webp" alt="First slide" style="width:1368px;height:700px">
+                                </a>
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-light">First slide label</h5>
+                                    <h2 class="text-light">保时捷718</h2>
                                     <p class="text-light">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="/Img/car2.png" alt="Second slide" style="width:900px;height:500px">
+                                <a href="/home/list#v-pills-911">
+                                    <img class="d-block img-fluid" src="/Img/car2.png" alt="Second slide" style="width:1368px;height:700px">
+                                </a>                               
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-light">Second slide label</h5>
+                                    <h2 class="text-light">保时捷911</h2>
                                     <p class="text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="/Img/car3.png" alt="Third slide" style="width:900px;height:500px">
+                                <a href="/home/list#v-pills-Panamera">
+                                    <img class="d-block img-fluid" src="https://files.porsche.cn/filestore/galleryimagerwd/multimedia/none/970-g2-4s-gallery-exterior-10/zoom2/88177941-a6aa-11e6-be88-0019999cd470;sP;twebp/porsche-zoom2.webp" alt="Third slide" style="width:1368px;height:700px">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h2 class="text-light">保时捷Panamera</h2>
+                                        <p class="text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    </div>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="/home/list#v-pills-Macan">
+                                    <img class="d-block img-fluid" src="/Img/car4.png" alt="Fourth slide" style="width:1368px;height:700px">
+                                </a>                               
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-light">Third slide label</h5>
+                                    <h2 class="text-light">保时捷Macan</h2>
                                     <p class="text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="/Img/car4.png" alt="Third slide" style="width:900px;height:500px">
+                                <a href="/home/list#v-pills-Cayenne">
+                                    <img class="d-block img-fluid" src="/Img/car5.png" alt="Fifth slide" style="width:1368px;height:700px">
+                                </a>                               
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-light">Third slide label</h5>
-                                    <p class="text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block img-fluid" src="/Img/car5.png" alt="Third slide" style="width:900px;height:500px">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="text-light">Third slide label</h5>
+                                    <h2 class="text-light">保时捷Cayenne</h2>
                                     <p class="text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                 </div>
                             </div>
@@ -91,7 +103,7 @@
                             {
                                 <div class="col-sm-6 col-md-4 mb-5">
                                     <div class="card lightbox">
-                                        <a href="/home/detail?=@item.Id">
+                                        <a href="/home/detail?id=@item.Id">
                                             <img class="card-img-top" src="@item.Image" alt="Gallery Image 1">
                                         </a>
                                         <div class="card-body">
@@ -130,7 +142,7 @@
                             <div class="card-body">
                                 <iframe src="/img/smallmap.html" width="400" height="200" frameborder="0" scrolling="no"></iframe>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
@@ -139,7 +151,7 @@
                                 销售顾问
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title">扫描二维码咨询</h4> 
+                                <h4 class="card-title">扫描二维码咨询</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <img src="~/Img/msg.png" />
@@ -148,17 +160,36 @@
                                     <div class="col-md-6">
                                         <img src="~/Img/people.png" style="width:96px;height:96px" />
                                         <h5>毛利兰</h5>
-                                    </div>                                 
+                                    </div>
                                 </div>
-                                
+
                             </div>
                             <div class="card-footer text-muted">
                                 2 days ago
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    function Jumpto718() {
+        window.location.href = "list#v-pills-718";
+    }
+    function Jumpto911() {
+        window.location.href = "list#v-pills-911";
+    }
+    function JumptoCayenne() {
+        window.location.href = "list#v-pills-Cayenne";
+    }
+    function JumptoMacan() {
+        window.location.href = "list#v-pills-Macan";
+    }
+    function JumptoPanamera() {
+        window.location.href = "list#v-pills-Panamera";
+    }
+</script>

@@ -288,5 +288,184 @@ namespace _4S.DAL
             co.Close();
             return lst;
         }
+
+
+        public List<Model.T_Base_Car> GetCars(string carmodel)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select  * from T_Base_Car where Carmodel = '" + carmodel + "'";
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            List<Model.T_Base_Car> lst = new List<Model.T_Base_Car>();
+            while (dr.Read())
+            {
+                Model.T_Base_Car model = new Model.T_Base_Car();
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Brand = Convert.ToString(dr["Brand"]);
+                model.Carmodel = Convert.ToString(dr["Carmodel"]);
+                model.Modeldetail = Convert.ToString(dr["Modeldetail"]);
+                model.Price = Convert.ToDecimal(dr["Price"]);
+                model.Stock = Convert.ToInt32(dr["Stock"]);
+                model.Color = Convert.ToInt32(dr["Color"]);
+                model.Image = Convert.ToString(dr["Image"]);
+                lst.Add(model);
+            }
+
+            dr.Close();
+            co.Close();
+            return lst;
+        }
+
+        public Model.T_Base_Car GetCarDetail(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();           
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select * from V_Base_Carmsg where id=@id";
+            cm.Parameters.AddWithValue("@id", id);
+
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            Model.T_Base_Car model = null;
+            while (dr.Read())
+            {
+                model = new Model.T_Base_Car();
+
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Brand = Convert.ToString(dr["Brand"]);
+                model.Carmodel = Convert.ToString(dr["Carmodel"]);
+                model.Modeldetail = Convert.ToString(dr["Modeldetail"]);
+                model.Price = Convert.ToDecimal(dr["Price"]);
+                model.Stock = Convert.ToInt32(dr["Stock"]);
+                model.Color = Convert.ToInt32(dr["Color"]);
+                model.Image = Convert.ToString(dr["Image"]);
+                model.BasicparameterId = Convert.ToInt32(dr["BasicparameterId"]);
+
+                Model.T_Base_CarParameter Par = new Model.T_Base_CarParameter();
+                Par.Id = Convert.ToInt32(dr["BasicparameterId"]);
+                Par.Level = Convert.ToString(dr["Level"]);
+                Par.Engine = Convert.ToString(dr["Engine"]);
+                Par.Gearbox = Convert.ToString(dr["Gearbox"]);
+                Par.Powertype = Convert.ToString(dr["Powertype"]);
+                Par.LWG = Convert.ToString(dr["LWG"]);
+                Par.Bodystructure = Convert.ToString(dr["Bodystructure"]);
+                Par.Listingyear = Convert.ToString(dr["Listingyear"]);
+                Par.Topspeed = Convert.ToInt32(dr["Topspeed"]);
+                Par.accelerate = Convert.ToDecimal(dr["accelerate"]);
+                model.CarParameter = Par;
+            }
+            dr.Close();
+            co.Close();
+            return model;
+        }
+
+        public Model.T_Base_User PersonCenter(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select * from T_Base_User where id=@id";
+            cm.Parameters.AddWithValue("@id", id);
+
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            Model.T_Base_User model = null;
+            while (dr.Read())
+            {
+                model = new Model.T_Base_User();
+
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.LoginName = Convert.ToString(dr["LoginName"]);
+                model.PWD = Convert.ToString(dr["PWD"]);
+                model.RealName = Convert.ToString(dr["RealName"]);
+                model.Email = Convert.ToString(dr["Email"]);
+                model.Phonenumber = Convert.ToString(dr["Phonenumber"]);
+                model.Type = Convert.ToInt32(dr["Type"]);
+                model.Remark = Convert.ToString(dr["Remark"]);
+            }
+            dr.Close();
+            co.Close();
+            return model;
+        }
+
+        public List<Model.T_Base_Service> GetPersonService(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select * from V_Base_ServiceMsg where Userid=@id";
+            cm.Parameters.AddWithValue("@id", id);
+
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            List<Model.T_Base_Service> lst = new List<Model.T_Base_Service>();
+            while (dr.Read())
+            {
+                Model.T_Base_Service model = new Model.T_Base_Service();
+
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Brand = Convert.ToString(dr["Brand"]);
+                model.CarModel = Convert.ToString(dr["CarModel"]);
+                model.Modeldetail = Convert.ToString(dr["Modeldetail"]);
+                model.FaultType = Convert.ToString(dr["FaultType"]);
+                model.Appointment = Convert.ToDateTime(dr["Appointment"]);
+                model.DealSituation = Convert.ToInt32(dr["DealSituation"]);
+                model.Note = Convert.ToString(dr["Note"]);
+                model.UserId = Convert.ToInt32(dr["UserId"]);
+                if (Convert.IsDBNull(dr["Price"]))
+                {
+                    model.Price = 0;
+                }
+                else
+                    model.Price = Convert.ToDecimal(dr["Price"]);
+                lst.Add(model);
+            }
+            dr.Close();
+            co.Close();
+            return lst;
+        }
+
+        public List<Model.T_Base_Testdrive> GetPersonReserve(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select * from V_Base_Testdrive where Userid=@id";
+            cm.Parameters.AddWithValue("@id", id);
+
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            List<Model.T_Base_Testdrive> lst = new List<Model.T_Base_Testdrive>();
+            while (dr.Read())
+            {
+                Model.T_Base_Testdrive model = new Model.T_Base_Testdrive();
+
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Dtime = Convert.ToDateTime(dr["Dtime"]);
+                model.DealSituation = Convert.ToInt32(dr["DealSituation"]);
+                model.DealPerson = Convert.ToString(dr["DealPerson"]);
+                model.CarId = Convert.ToInt32(dr["CarId"]);
+                model.UserId = Convert.ToInt32(dr["UserId"]);
+                Model.T_Base_Car car = new Model.T_Base_Car();
+                car.Id = Convert.ToInt32(dr["CarId"]);
+                car.Carmodel = Convert.ToString(dr["Carmodel"]);
+                car.Modeldetail = Convert.ToString(dr["Modeldetail"]);
+                model.Car = car;
+                lst.Add(model);
+            }
+            dr.Close();
+            co.Close();
+            return lst;
+        }
     }
 }

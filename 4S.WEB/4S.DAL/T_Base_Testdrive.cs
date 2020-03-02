@@ -128,6 +128,28 @@ namespace _4S.DAL
             return result;
         }
 
+        public int AddNew(Model.T_Base_Testdrive model)
+        {
+            //把数据存入数据库
+            //ado.net插入数据库
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "insert into T_Base_Testdrive (CarId,UserId,Dtime,DealSituation) values (@CarId, @UserId, @Dtime, @DealSituation)";
+            cm.Parameters.AddWithValue("@CarId", model.CarId);
+            cm.Parameters.AddWithValue("@UserId", model.UserId);
+            cm.Parameters.AddWithValue("@Dtime", model.Dtime);
+            cm.Parameters.AddWithValue("@DealSituation", 0);
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+
+
         public Model.T_Base_Testdrive GetModel(int id)
         {
             SqlConnection co = new SqlConnection();

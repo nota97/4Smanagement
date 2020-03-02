@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "detail";
+    _4S.Model.T_Base_Car CarDetail = ViewBag.CarDetail;
+    string SignIn = ViewBag.data;
+    int id = ViewBag.Id;
+}
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body product-page">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel" data-interval="false">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+                                    <img class="d-block img-fluid" src="@CarDetail.Image" alt="Product Image 1" style="height:400px">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <i class="batch-icon batch-icon-arrow-left batch-icon-lg"></i>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <i class="batch-icon batch-icon-arrow-right batch-icon-lg"></i>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>@CarDetail.Carmodel @CarDetail.Modeldetail</h1>
+                        <h1>@CarDetail.Brand</h1>
+                        <p class="lead"></p>
+                        <hr class="my-4">
+                        <div class="">
+                            <h1 style="color:red">¥@CarDetail.Price 万</h1>
+                        </div>
+                        <div>
+                            <p class="lead"></p>
+                            <h1>库存：@CarDetail.Stock</h1>
+                        </div>
+                        <div class="row">
+                            <div class="" style="width:125px;margin-left:15px"><h2>车身颜色：</h2></div>
+                            <div class="col-lg-6 mb-3">
+                                @if (CarDetail.Color == 0)
+                                {
+                                    <div class="custom-control custom-radio custom-color-control" data-qp-color="#F8F8FF">
+                                        <input type="radio" class="custom-control-input" id="radio1" name="radio-stacked" checked>
+                                        <label class="custom-control-label" for="radio1">
+                                            <span class="sr-only">White</span>
+                                        </label>
+                                    </div>
+                                }
+                                else if (CarDetail.Color == 1)
+                                {
+                                    <div class="custom-control custom-radio custom-color-control" data-qp-color="#000000">
+                                        <input type="radio" class="custom-control-input" id="radio1" name="radio-stacked" checked>
+                                        <label class="custom-control-label" for="radio1">
+                                            <span class="sr-only">Black</span>
+                                        </label>
+                                    </div>
+                                }
+                                else if (CarDetail.Color == 2)
+                                {
+                                    <div class="custom-control custom-radio custom-color-control" data-qp-color="#f43a59">
+                                        <input type="radio" class="custom-control-input" id="radio1" name="radio-stacked" checked>
+                                        <label class="custom-control-label" for="radio1">
+                                            <span class="sr-only">Red</span>
+                                        </label>
+                                    </div>
+                                }
+                                else if (CarDetail.Color == 3)
+                                {
+                                    <div class="custom-control custom-radio custom-color-control" data-qp-color="#87CEFF">
+                                        <input type="radio" class="custom-control-input" id="radio1" name="radio-stacked" checked>
+                                        <label class="custom-control-label" for="radio1">
+                                            <span class="sr-only">Blue</span>
+                                        </label>
+                                    </div>
+                                }
+                                else if (CarDetail.Color == 4)
+                                {
+                                    <div class="custom-control custom-radio custom-color-control" data-qp-color="#778899">
+                                        <input type="radio" class="custom-control-input" id="radio1" name="radio-stacked" checked>
+                                        <label class="custom-control-label" for="radio1">
+                                            <span class="sr-only">Gray</span>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <h3>Description</h3>
+                        <p class="lead">
+                            Long shadow innovate sticky note 360 campaign actionable insight hacker minimum viable product SpaceTeam affordances waterfall is so 2000 and late sticky note entrepreneur pivot ship it.
+                        </p>
+                        <a class="btn btn-primary btn-gradient btn-block btn-lg" href="#reserve">预约试驾</a>
+                    </div>
+                </div>
+                <div class="col-md-12 pb-5">
+                    <h2>基本参数</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>级别</th>
+                                <th>发动机</th>
+                                <th>动力类型</th>
+                                <th>变速箱</th>
+                                <th>长×宽×高(mm)</th>
+                                <th>车身结构</th>
+                                <th>上市年份</th>
+                                <th>最高车速(km/h)</th>
+                                <th>0-100加速时间(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#</td>
+                                <td>@CarDetail.CarParameter.Level</td>
+                                <td>@CarDetail.CarParameter.Engine</td>
+                                <td>@CarDetail.CarParameter.Powertype</td>
+                                <td>@CarDetail.CarParameter.Gearbox</td>
+                                <td>@CarDetail.CarParameter.LWG</td>
+                                <td>@CarDetail.CarParameter.Bodystructure</td>
+                                <td>@CarDetail.CarParameter.Listingyear</td>
+                                <td>@CarDetail.CarParameter.Topspeed</td>
+                                <td>@CarDetail.CarParameter.accelerate</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body" id="reserve">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p class="lead">
+                                    <h1>试驾预约</h1>
+                                </p>
+                                <form action="" id="formAdd">
+                                    <div class="form-group">
+                                        <label for="CarId" class="active">车型编号</label>
+                                        <input type="text" class="form-control" name="CarId" id="CarId" value="@CarDetail.Id" placeholder="CarId" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Car" class="active">试驾车型</label>
+                                        <input type="text" class="form-control" name="Car" id="Car" value="@CarDetail.Carmodel @CarDetail.Modeldetail" placeholder="CarId" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="UserId" value=@id>
+                                        <label for="Loginname" class="active">用户名</label>
+                                        <input type="text" class="form-control" name="Loginname" id="Loginname" value="@SignIn" placeholder="" readonly>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="hour-field">预约时间</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend-1">
+                                                    <i class="batch-icon batch-icon-clock"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="date form-control" name="Dtime" id="hour-field" placeholder="YYYY/MM/DD">
+                                        </div>
+                                    </div>
+                                    <button id="validate" type="button" class="btn btn-primary" onclick="AddSave()">预约</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function serializeObject(form) {
+        var o = {};
+        var a = $(form).serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+    function AddSave() {
+        var data = serializeObject("#formAdd");
+        console.log(JSON.stringify(data));
+        if (data["Loginname"] == "") {
+            alert("请先登录");
+            window.location.href = "SignIn";
+        }
+        else {                    
+            $.ajax({
+
+                type: "post",
+
+                dataType: "json",
+
+                url: "/T_Base_Testdrive/addNew",
+
+                data: JSON.stringify(data),
+
+                contentType: "application/json;charset=utf-8",
+
+                success: function (result) {
+                    if (result.code == 1) {
+                        alert("预约成功");
+                        window.location.href = "PersonCenter?id=@id#reserve";                 
+                    } else {
+                        alert(message);
+                        //处理错误
+                    }
+                },
+                error: function (msg) {
+                    alert('通讯失败');
+                }
+            });
+        }       
+    }
+</script>
+

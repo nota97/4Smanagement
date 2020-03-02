@@ -78,6 +78,21 @@ namespace _4S.WEB.Controllers
             }
         }
 
+        public JsonResult AddNew(Model.T_Base_Service model)
+        {
+            //处理
+            BLL.T_Base_Service bll = new BLL.T_Base_Service();
+            int result = bll.AddNew(model);
+            if (result >= 1)
+            {
+                return Json(new { code = 1, message = "插入成功" });
+            }
+            else
+            {
+                return Json(new { code = 0, message = "提交失败" });
+            }
+        }
+
         public ActionResult Edit(int id)
         {
             if (Session["LoginIn"] == null)

@@ -174,7 +174,7 @@
     <Content Include="Img\911_1.jpg" />
     <Content Include="Img\car1.png" />
     <Content Include="Img\car2.png" />
-    <Content Include="Img\car3.png" />
+    <Content Include="Img\car333.png" />
     <Content Include="Img\car4.png" />
     <Content Include="Img\car5.png" />
     <Content Include="Img\Cayenne1.jpg" />
@@ -3798,6 +3798,10 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\list.cshtml" />
+    <Content Include="Views\Home\detail.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
+    <Content Include="Views\Home\PersonCenter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

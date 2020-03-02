@@ -1,5 +1,6 @@
 ﻿@{ 
     string loginname = ViewBag.data;
+    int id = ViewBag.Id;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -123,7 +124,7 @@
                                     </form>
                                 </li>
                             </ul>
-                        </li>                       
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-5 navbar-profile">
                         <li class="nav-item dropdown">
@@ -138,8 +139,8 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
-                                    <li><a class="dropdown-item" href="/home/signup">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="/home/signin">Sign In</a></li>
+                                    <li><a class="dropdown-item" href="/home/signin">登录</a></li>
+                                    <li><a class="dropdown-item" href="/home/signup">注册</a></li>
                                 </ul>
                             }
                             else
@@ -153,15 +154,8 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
-                                    <li><a class="dropdown-item" href="/home/profile">Profile</a></li>
-                                    <li>
-                                        <a class="dropdown-item" href="mail-inbox.html">
-                                            Messages
-                                            <span class="badge badge-danger badge-pill float-right">3</span>
-                                        </a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="profiles-member-profile.html">Settings</a></li>
-                                    <li><a class="dropdown-item" href="/home/signin" >Logout</a></li>
+                                    <li><a class="dropdown-item" href="/home/personcenter?id=@id">个人中心</a></li>                                   
+                                    <li><a class="dropdown-item" href="/home/signin">Logout</a></li>
                                 </ul>
                             }
                         </li>
@@ -179,13 +173,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="/home/list">
                                     <i class="batch-icon batch-icon-layout-content-left"></i>
                                     车型报价
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="/home/service">
                                     <i class="batch-icon batch-icon-star"></i>
                                     维修服务
                                 </a>
@@ -201,7 +195,7 @@
                                     <i class="batch-icon batch-icon-at"></i>
                                     关于
                                 </a>
-                            </li>                        
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -220,11 +214,11 @@
             </div>
         </div>
     </div>
-    
+
     <!-- SCRIPTS - REQUIRED START -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- Bootstrap core JavaScript -->
-    <!-- JQuery -->
+    <!-- JQuery -->   
     <!-- Popper.js - Bootstrap tooltips -->
     <script type="text/javascript" src="/static/assets/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->

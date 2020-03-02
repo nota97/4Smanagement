@@ -42,6 +42,13 @@ namespace _4S.BLL
             return dal.Add(model);
         }
 
+        public int AddNew(Model.T_Base_Testdrive model)
+        {
+            //记录日志
+            DAL.T_Base_Testdrive dal = new DAL.T_Base_Testdrive();
+            return dal.AddNew(model);
+        }
+
         public Model.T_Base_Testdrive GetModel(int id)
         {
             DAL.T_Base_Testdrive dal = new DAL.T_Base_Testdrive();
