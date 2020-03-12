@@ -467,5 +467,56 @@ namespace _4S.DAL
             co.Close();
             return lst;
         }
+
+        public List<Model.T_Base_CarPart> GetAllCarPart()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select  * from T_Base_CarPart ";
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            List<Model.T_Base_CarPart> lst = new List<Model.T_Base_CarPart>();
+            while (dr.Read())
+            {
+                Model.T_Base_CarPart carPart = new Model.T_Base_CarPart();
+                carPart.Brand = Convert.ToString(dr["Brand"]);
+                carPart.Id = Convert.ToInt32(dr["Id"]);
+                carPart.Name = Convert.ToString(dr["Name"]);
+                carPart.Price = Convert.ToDecimal(dr["Price"]);
+                carPart.Applicable = Convert.ToString(dr["Applicable"]);
+                carPart.Note = Convert.ToString(dr["Note"]);
+                carPart.Picture = Convert.ToString(dr["Picture"]);
+                carPart.Stock = Convert.ToInt32(dr["Stock"]);
+                lst.Add(carPart);
+            }
+            return lst;
+        }
+
+        public Model.T_Base_CarPart GetCarPartDetail(int id)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select  * from T_Base_CarPart where @id=id";
+            cm.Parameters.AddWithValue("@id", id);
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            Model.T_Base_CarPart model = new Model.T_Base_CarPart();
+            while (dr.Read())
+            {
+                model.Brand = Convert.ToString(dr["Brand"]);
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Name = Convert.ToString(dr["Name"]);
+                model.Price = Convert.ToDecimal(dr["Price"]);
+                model.Applicable = Convert.ToString(dr["Applicable"]);
+                model.Note = Convert.ToString(dr["Note"]);
+                model.Picture = Convert.ToString(dr["Picture"]);
+                model.Stock = Convert.ToInt32(dr["Stock"]);
+            }
+            return model;
+        }
     }
 }

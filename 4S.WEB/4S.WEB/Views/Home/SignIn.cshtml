@@ -103,8 +103,17 @@
                     //输出data
                     if (result.code == 1) {
                         console.log("登录成功")
+                        var url = location.href;
+                        var type = url.toString().split('#')[1];
+                        console.log(type);
+                        if (type) {
+                            window.location.href="/home/"+type;                            
+                        }
                         //页面跳转
-                        location.href = "/Home/index";
+                        else {
+                            location.href = "/Home/index";
+                        }
+                       
                     }
                     else {
                         alert("账号或密码出错");

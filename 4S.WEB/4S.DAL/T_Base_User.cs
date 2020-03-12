@@ -261,5 +261,39 @@ namespace _4S.DAL
             co.Close();
             return result;
         }
+
+        public int PersonUpdate(Model.T_Base_User model)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "update T_Base_User set RealName=@RealName,Email=@Email,Phonenumber=@Phonenumber where Id=@Id";         
+            cm.Parameters.AddWithValue("@RealName", model.RealName);
+            cm.Parameters.AddWithValue("@Email", model.Email);
+            cm.Parameters.AddWithValue("@Phonenumber", model.Phonenumber);
+            cm.Parameters.AddWithValue("@Id", model.Id);
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
+
+        public int UpdatePWD(Model.T_Base_User model)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "update T_Base_User set PWD=@PWD where Id=@Id";           
+            cm.Parameters.AddWithValue("@PWD", model.PWD);
+            cm.Parameters.AddWithValue("@Id", model.Id);
+            cm.Connection = co;
+            int result = cm.ExecuteNonQuery();
+            co.Close();
+            return result;
+        }
     }
 }

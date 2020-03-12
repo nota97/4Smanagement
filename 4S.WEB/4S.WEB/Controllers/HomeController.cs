@@ -91,6 +91,14 @@ namespace _4S.WEB.Controllers
             }
         }
 
+        public JsonResult Layout()
+        {
+            Session["SignIn"] = null;
+            Session["Id"] = null;
+            return Json(new { code = 1, message = "登出成功" });
+        }
+
+
         public JsonResult LoginCheck(string username, string password)
         {
             BLL.home model = new BLL.home();
@@ -265,6 +273,61 @@ namespace _4S.WEB.Controllers
                 ViewBag.Id = Session["Id"];
             }
             return View("PersonCenter", "~/Views/Shared/_Layout.cshtml");
+        }
+
+        public ActionResult PersonCenterEdit(int id)
+        {
+            if (Session["SignIn"] == null)
+            {
+                return Redirect("/home/signin");
+            }
+            BLL.home bll = new BLL.home();
+            Model.T_Base_User user = bll.PersonCenter(id);           
+            ViewBag.user = user;
+            ViewBag.data = Session["SignIn"];
+            if (Session["Id"] == null)
+            {
+                ViewBag.Id = 0;
+            }
+            else
+            {
+                ViewBag.Id = Session["Id"];
+            }
+            return View("PersonCenterEdit", "~/Views/Shared/_Layout.cshtml");
+        }
+
+        public ActionResult partlist()
+        {
+            BLL.home bll = new BLL.home();
+            List<Model.T_Base_CarPart> CarPart = bll.GetAllCarPart();
+            ViewBag.CarPart = CarPart;
+            ViewBag.data = Session["SignIn"];
+            if (Session["Id"] == null)
+            {
+                ViewBag.Id = 0;
+            }
+            else
+            {
+                ViewBag.Id = Session["Id"];
+            }
+            return View("partlist", "~/Views/Shared/_Layout.cshtml");
+        }
+
+        public ActionResult Partdetail(int id)
+        {
+            BLL.home bll = new BLL.home();
+            Model.T_Base_CarPart CarPartDetail = bll.GetCarPartDetail(id);
+            ViewBag.CarPartDetail = CarPartDetail;
+            ViewBag.data = Session["SignIn"];
+            if (Session["Id"] == null)
+            {
+                ViewBag.Id = 0;
+            }
+            else
+            {
+                ViewBag.Id = Session["Id"];
+            }
+            return View("Partdetail", "~/Views/Shared/_Layout.cshtml");
         }
     }
 }

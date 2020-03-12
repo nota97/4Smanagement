@@ -95,5 +95,17 @@ namespace _4S.BLL
             DAL.home dal = new DAL.home();
             return dal.GetPersonReserve(id);
         }
+
+        public List<Model.T_Base_CarPart> GetAllCarPart()
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetAllCarPart();
+        }
+
+        public Model.T_Base_CarPart GetCarPartDetail(int id)
+        {
+            DAL.home dal = new DAL.home();
+            return dal.GetCarPartDetail(id);
+        }
     }
 }

@@ -181,6 +181,12 @@
     <Content Include="Img\Macan_1.jpg" />
     <Content Include="Img\msg.png" />
     <Content Include="Img\mymap.html" />
+    <Content Include="Img\part_1.jpg" />
+    <Content Include="Img\part_2.jpg" />
+    <Content Include="Img\part_3.jpg" />
+    <Content Include="Img\part_4.jpg" />
+    <Content Include="Img\part_5.jpg" />
+    <Content Include="Img\part_6.jpg" />
     <Content Include="Img\people.png" />
     <Content Include="Img\s10823_420.jpg" />
     <Content Include="Img\smallmap.html" />
@@ -3802,6 +3808,9 @@
     <Content Include="Views\Home\detail.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Home\PersonCenter.cshtml" />
+    <Content Include="Views\Home\partlist.cshtml" />
+    <Content Include="Views\Home\Partdetail.cshtml" />
+    <Content Include="Views\Home\PersonCenterEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

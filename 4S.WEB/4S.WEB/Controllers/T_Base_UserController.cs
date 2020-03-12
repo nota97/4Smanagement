@@ -129,5 +129,29 @@ namespace _4S.WEB.Controllers
             else
                 return Json(new { code = 0, message = "修改失败" });
         }
+
+        public JsonResult PersonUpdate(Model.T_Base_User model)
+        {
+            BLL.T_Base_User bll = new BLL.T_Base_User();
+            int result = bll.PersonUpdate(model);
+            if (result > 0)
+            {
+                return Json(new { code = 1, message = " 修改成功" });
+            }
+            else
+                return Json(new { code = 0, message = "修改失败" });
+        }
+
+        public JsonResult UpdatePWD(Model.T_Base_User model)
+        {
+            BLL.T_Base_User bll = new BLL.T_Base_User();
+            int result = bll.UpdatePWD(model);
+            if (result > 0)
+            {
+                return Json(new { code = 1, message = " 修改成功" });
+            }
+            else
+                return Json(new { code = 0, message = "修改失败" });
+        }
     }
 }

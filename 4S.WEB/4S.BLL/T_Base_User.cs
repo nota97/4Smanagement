@@ -69,5 +69,17 @@ namespace _4S.BLL
             DAL.T_Base_User dal = new DAL.T_Base_User();
             return dal.Update(model);
         }
+
+        public int PersonUpdate(Model.T_Base_User model)
+        {
+            DAL.T_Base_User dal = new DAL.T_Base_User();
+            return dal.PersonUpdate(model);
+        }
+
+        public int UpdatePWD(Model.T_Base_User model)
+        {
+            DAL.T_Base_User dal = new DAL.T_Base_User();
+            return dal.UpdatePWD(model);
+        }
     }
 }

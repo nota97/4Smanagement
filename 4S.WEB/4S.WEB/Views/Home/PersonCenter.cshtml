@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "PersonCenter";
     _4S.Model.T_Base_User user = ViewBag.user;
+    int id = ViewBag.Id;
     List<_4S.Model.T_Base_Testdrive> reserve = ViewBag.reserve;
     List<_4S.Model.T_Base_Service> service = ViewBag.service;
 }
@@ -18,9 +19,9 @@
                                 <img src="/quillpro/assets/img/profile-pic.jpg" width="144" height="144">
                             </div>
                             <h2 style="text-align:center">@user.LoginName</h2>
-                            <a class="btn btn-primary btn-block btn-gradient" href="#">
+                            <a class="btn btn-primary btn-block btn-gradient" href="/home/personcenteredit?id=@id">
                                 <i class="batch-icon batch-icon-user-alt-add-2"></i>
-                                Follow
+                                编辑个人资料
                             </a>
                         </div>
                         

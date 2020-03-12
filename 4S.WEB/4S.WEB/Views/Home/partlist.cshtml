@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "partlist";
+    List<_4S.Model.T_Base_CarPart> CarPart = ViewBag.CarPart;
+}
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12 mb-5">
+                    <div class="row mb-5 pb-5 clearfix qp-gallery-two">
+                        <div class="col-md-12">
+                            <h2>汽车配件</h2>
+                        </div>
+                        @{
+                            foreach (var item in CarPart)
+                            {
+                                <div class="col-sm-6 col-md-4 mb-5">
+                                    <div class="card lightbox">
+                                        <a href="/home/Partdetail?id=@item.Id">
+                                            <img class="card-img-top" src="@item.Picture" alt="Gallery Image 1" style="height:261px">
+                                        </a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">@item.Name</h4>
+                                            <h4 class="card-title">
+                                                <em>@item.Brand</em>
+                                                <span style="color:red;float:right">¥@item.Price 元</span>
+                                            </h4>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

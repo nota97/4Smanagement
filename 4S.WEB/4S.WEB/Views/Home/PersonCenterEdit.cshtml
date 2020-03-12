@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "PersonCenterEdit";
+    _4S.Model.T_Base_User user = ViewBag.user;
+    int id = ViewBag.Id;
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <img class="card-img" src="/quillpro/assets/img/bg-image-1-horizontal.jpg" alt="Feature Image">
+            <div class="card-user-profile">
+                <div class="profile-page-left">
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="profile-picture profile-picture-lg bg-gradient bg-primary mb-4">
+                                <img src="/quillpro/assets/img/profile-pic.jpg" width="144" height="144">
+                            </div>
+                            <h2 style="text-align:center">@user.LoginName</h2>
+
+                        </div>
+
+                    </div>
+                    <hr />
+                    <h2>
+                        <i class="batch-icon batch-icon-user"></i>
+                        Phone
+                    </h2>
+                    <h4>@user.Phonenumber</h4>
+                    <hr />
+                    <h2>
+                        <i class="batch-icon batch-icon-mail"></i>
+                        Email
+                    </h2>
+                    <h4>@user.Email</h4>
+                    <hr />
+                    <h5>
+                        <i class="batch-icon batch-icon-image"></i>
+                        Album
+                    </h5>
+                    <a href="#">
+                        <img src="/quillpro/assets/img/album-image.jpg" class="img-fluid img-thumbnail" />
+                    </a>
+                    <a class="float-right mt-2" href="#">More</a>
+                </div>
+                <div class="profile-page-center">
+                    <h1 class="card-user-profile-name">编辑个人资料</h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="lead">
+                                    </p>
+                                    <form action="" id="formAdd">
+                                        <div class="form-group">
+                                            <input type="hidden" name="Id" value=@user.Id>
+                                            <label for="LoginName" class="active">用户名</label>
+                                            <input type="text" class="form-control" name="LoginName" id="LoginName" value="@user.LoginName" readonly data-validation="length alphanumeric"
+                                                   data-validation-length="3-12"
+                                                   data-validation-error-msg="Username has to be an alphanumeric value (3-12 chars)" placeholder="LoginName">
+                                        </div>
+
+                                        @*<div class="form-group">
+                                <label for="password1" class="active">密码</label>
+                                <input type="password" class="form-control" id="PWD" name="PWD" value="@user.PWD" data-validation="strength" placeholder="Password">
+                            </div>*@
+
+                                        <div class="form-group">
+                                            <label for="realname" class="active">真实姓名</label>
+                                            <input type="text" class="form-control" name="RealName" id="RealName" value="@user.RealName" placeholder="RealName">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email" class="active">电子邮箱</label>
+                                            <input type="email" class="form-control" id="Email" name="Email" value="@user.Email" data-validation="Email" placeholder="Enter Email">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phonenumber" class="active">手机号</label>
+                                            <input type="text" class="form-control" name="Phonenumber" id="Phonenumber" value="@user.Phonenumber" placeholder="Phonenumber">
+                                        </div>
+                                        <button id="validate" type="button" class="btn btn-primary" onclick="EditSave()">保存</button>
+                                        <a class="btn btn-primary" href="/home/personcenter?id=@id">
+                                            <i class="batch-icon "></i>
+                                            返回
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <h1 class="card-user-profile-name">修改密码</h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="lead">
+                                    </p>
+                                    <form action="" id="formEdit">
+                                        <div class="form-group">
+                                            <input type="hidden" name="Id" value=@user.Id>                               
+                                        </div>
+
+                                        <div class="form-group">                             
+                                            <input type="hidden" class="form-control" id="PWD" name="PWD" value="@user.PWD" data-validation="strength" placeholder="Password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="oldPWD" class="active">原密码</label>
+                                            <input type="password" class="form-control" name="oldPWD" id="oldPWD"  placeholder="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="newPWD" class="active">新密码</label>
+                                            <input type="password" class="form-control" id="newPWD" name="newPWD"   placeholder="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="newPWD1" class="active">确认新密码</label>
+                                            <input type="password" class="form-control" name="newPWD1" id="newPWD1"  placeholder="">
+                                        </div>
+                                        <button id="validate1" type="button" class="btn btn-primary" onclick="EditPWD()">确认修改</button>                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function serializeObject(form) {
+        var o = {};
+        var a = $(form).serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+    function EditSave() {
+
+        //序列化form
+        var data = serializeObject("#formAdd");
+        console.log(JSON.stringify(data));
+        console.log(data["Id"]);
+        // var data = $('#formAdd').serializeObject();
+
+        $.ajax({
+
+            type: "post",
+
+            dataType: "json",
+
+            url: "/T_Base_User/PersonUpdate",
+
+            data: JSON.stringify(data),
+            contentType: "application/json;charset=utf-8",
+
+            success: function (result) {
+                if (result.code == 1) {
+                    alert(result.message);
+                    //处理
+                    window.location.href = "personcenter?id="+data["Id"];                   
+                } else {
+                    alert(result.message);
+                    //处理错误
+                }
+            },
+            error: function (msg) {
+                alert('通讯失败');
+            }
+        });
+    }
+
+    function EditPWD() {
+        var data = serializeObject("#formEdit");
+        console.log(JSON.stringify(data));
+        if (data["PWD"] != data["oldPWD"]) {
+            alert("原密码错误！");
+        }
+        else {
+            if (data["newPWD"] != data["newPWD1"]) {
+                alert("新密码两次不一致！")
+            }
+            else {
+                data["PWD"] = data["newPWD"];
+                console.log(data["PWD"]);
+                $.ajax({
+
+                    type: "post",
+
+                    dataType: "json",
+
+                    url: "/T_Base_User/UpdatePWD",
+
+                    data: JSON.stringify(data),
+                    contentType: "application/json;charset=utf-8",
+
+                    success: function (result) {
+                        if (result.code == 1) {
+                            alert(result.message);
+                            //处理
+                            window.location.href = "signin";
+                        } else {
+                            alert(result.message);
+                            //处理错误
+                        }
+                    },
+                    error: function (msg) {
+                        alert('通讯失败');
+                    }
+                });
+            }
+        }
+        
+    }
+
+</script>

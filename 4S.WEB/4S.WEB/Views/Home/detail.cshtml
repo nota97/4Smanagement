@@ -36,7 +36,8 @@
                         <h1>@CarDetail.Brand</h1>
                         <p class="lead"></p>
                         <hr class="my-4">
-                        <div class="">
+                        <div class="row"> 
+                            <h1 style="margin-left:15px">指导价：</h1>
                             <h1 style="color:red">¥@CarDetail.Price 万</h1>
                         </div>
                         <div>
@@ -194,7 +195,9 @@
         console.log(JSON.stringify(data));
         if (data["Loginname"] == "") {
             alert("请先登录");
-            window.location.href = "SignIn";
+            var url = location.href;
+            var type = url.toString().split('=')[1];
+            window.location.href = "SignIn#detail?id=" + type;
         }
         else {                    
             $.ajax({
