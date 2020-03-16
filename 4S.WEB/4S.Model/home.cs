@@ -12,5 +12,9 @@ namespace _4S.Model
         public int SalesOrderNumber { get; set; }
         public decimal TotalSales { get; set; }
         public int RepairOrderNumber { get; set; }
+        public int NewTestNumber { get; set; }
+        public int NewRepairNumber { get; set; }
+        public decimal OneDaySales { get; set; }
+        public int EmpNumber { get; set; }
     }
 }

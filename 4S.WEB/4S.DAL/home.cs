@@ -25,6 +25,21 @@ namespace _4S.DAL
             return (Int32)count - 1;
         }
 
+        public int GetEmployeeNumber()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select count(*) from T_Base_Employee";
+            cm.Connection = co;
+
+            Object count = cm.ExecuteScalar();
+            co.Close();
+            return (Int32)count;
+        }
+
         public int GetSalesOrderNumber()
         {
             SqlConnection co = new SqlConnection();
@@ -82,6 +97,85 @@ namespace _4S.DAL
             return totalprice;
         }
 
+        public decimal GetOneDaySales()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand(); 
+            cm.CommandText = "select sum(Price) from T_Base_Service where DateDiff(dd,Appointment,getdate())= 0 ";
+            cm.Connection = co;
+
+            SqlCommand cn = new SqlCommand();
+            cn.CommandText = "select sum(TotalPrice) from T_Base_SalesOrder where DateDiff(dd,Dtime,getdate())= 0 ";
+            cn.Connection = co;
+
+            SqlCommand cd = new SqlCommand();
+            cd.CommandText = "select sum(TotalPrice) from T_Base_CarPartSales where DateDiff(dd,Dtime,getdate())= 0";
+            cd.Connection = co;
+            decimal a = 0;
+            decimal b = 0;
+            decimal c = 0;
+            if (Convert.IsDBNull(cm.ExecuteScalar()))
+            {
+                a = 0;
+            }
+            else
+            {
+                a = Convert.ToDecimal(cm.ExecuteScalar());
+            }
+            if (Convert.IsDBNull(cn.ExecuteScalar()))
+            {
+                b = 0;
+            }
+            else
+            {
+                b = Convert.ToDecimal(cn.ExecuteScalar());
+            }
+            if (Convert.IsDBNull(cd.ExecuteScalar()))
+            {
+                c = 0;
+            }
+            else
+            {
+                c = Convert.ToDecimal(cd.ExecuteScalar());
+            }
+            decimal totalprice = a + b + c;
+
+            return totalprice;
+        }
+
+        public int GetNewRepairNumber()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select count(*) from T_Base_Service where DealSituation=0";
+            cm.Connection = co;
+
+            Object count = cm.ExecuteScalar();
+            co.Close();
+            return (Int32)count;
+        }
+
+        public int GetNewTestNumber()
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select count(*) from T_Base_Testdrive where DealSituation=0";
+            cm.Connection = co;
+
+            Object count = cm.ExecuteScalar();
+            co.Close();
+            return (Int32)count;
+        }
+
         public Model.home GetModel()
         {
             Model.home model = new Model.home();
@@ -89,6 +183,10 @@ namespace _4S.DAL
             model.SalesOrderNumber = GetSalesOrderNumber();
             model.RepairOrderNumber = GetRepairOrderNumber();
             model.TotalSales = GetTotalSales();
+            model.NewRepairNumber = GetNewRepairNumber();
+            model.NewTestNumber = GetNewTestNumber();
+            model.OneDaySales = GetOneDaySales();
+            model.EmpNumber = GetEmployeeNumber();
             return model;
         }
 

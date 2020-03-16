@@ -329,5 +329,22 @@ namespace _4S.WEB.Controllers
             }
             return View("Partdetail", "~/Views/Shared/_Layout.cshtml");
         }
+
+        public ActionResult Search(string search)
+        {
+            BLL.T_Base_Car bll = new BLL.T_Base_Car();
+            List<Model.T_Base_Car> lst = bll.GetPartList(search);
+            ViewBag.lst = lst;
+            ViewBag.data = Session["SignIn"];
+            if (Session["Id"] == null)
+            {
+                ViewBag.Id = 0;
+            }
+            else
+            {
+                ViewBag.Id = Session["Id"];
+            }
+            return View("Search", "~/Views/Shared/_Layout.cshtml");
+        }
     }
 }

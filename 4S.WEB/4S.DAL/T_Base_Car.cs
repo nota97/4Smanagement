@@ -246,5 +246,34 @@ namespace _4S.DAL
             co.Close();
             return result;
         }
+
+        public List<Model.T_Base_Car> GetPartList(string search)
+        {
+            SqlConnection co = new SqlConnection();
+            co.ConnectionString = ConfigurationManager.ConnectionStrings["sqlconnection"].ToString();
+            co.Open();
+            SqlCommand cm = new SqlCommand();
+            cm.CommandText = "select  * from T_Base_Car where Carmodel like '%" + search + "%' or Modeldetail like '%"+search+"%'";
+            cm.Connection = co;
+            SqlDataReader dr = cm.ExecuteReader();
+            List<Model.T_Base_Car> lst = new List<Model.T_Base_Car>();
+            while (dr.Read())
+            {
+                Model.T_Base_Car model = new Model.T_Base_Car();
+                model.Id = Convert.ToInt32(dr["Id"]);
+                model.Brand = Convert.ToString(dr["Brand"]);
+                model.Carmodel = Convert.ToString(dr["Carmodel"]);
+                model.Modeldetail = Convert.ToString(dr["Modeldetail"]);
+                model.Price = Convert.ToDecimal(dr["Price"]);
+                model.Stock = Convert.ToInt32(dr["Stock"]);
+                model.Color = Convert.ToInt32(dr["Color"]);
+                model.Image = Convert.ToString(dr["Image"]);
+                lst.Add(model);
+            }
+
+            dr.Close();
+            co.Close();
+            return lst;
+        }
     }
 }

@@ -53,5 +53,11 @@ namespace _4S.BLL
             DAL.T_Base_Car dal = new DAL.T_Base_Car();
             return dal.Update(model);
         }
+
+        public List<Model.T_Base_Car> GetPartList(string search)
+        {
+            DAL.T_Base_Car dal = new DAL.T_Base_Car();
+            return dal.GetPartList(search);
+        }
     }
 }

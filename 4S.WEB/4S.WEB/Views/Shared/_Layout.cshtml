@@ -75,7 +75,7 @@
                             <li>
                                 <form class="form-inline my-2 my-lg-0 no-waves-effect">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                        <input type="text"  class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">
                                                 <i class="batch-icon batch-icon-search"></i>
@@ -116,9 +116,9 @@
                                 <li>
                                     <form class="form-inline my-2 my-lg-0 no-waves-effect">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                            <input type="text" id="Getsearch" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">Search</button>
+                                                <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button" onclick="Search()">Search</button>
                                             </div>
                                         </div>
                                     </form>
@@ -155,7 +155,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
                                     <li><a class="dropdown-item" href="/home/personcenter?id=@id">个人中心</a></li>                                   
-                                    <li><a class="dropdown-item" @*href="/home/signin"*@ onclick="Layout()">Logout</a></li>
+                                    <li><a class="dropdown-item" @*href="/home/signin"*@ onclick="Layout()">退出</a></li>
                                 </ul>
                             }
                         </li>
@@ -239,6 +239,14 @@
                     alert('通讯失败');
                 }
             });
+        }
+
+        function Search() {           
+            var data = document.getElementById("Getsearch").value;
+            console.log(data);
+            if (data != "") {
+                window.location.href = "search?search=" + data;
+            }
         }
     </script>
     <!-- SCRIPTS - REQUIRED START -->

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    List<_4S.Model.T_Base_Car> lst = ViewBag.lst;
+}
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12 mb-5">
+                    <div class="row mb-5 pb-5 clearfix qp-gallery-two">
+                        <div class="col-md-12">
+                            <h1>搜索到一下信息</h1>
+                        </div>
+                        <hr />
+                        @{
+                            foreach (var item in lst)
+                            {
+                                <div class="col-sm-6 col-md-4 mb-5">
+                                    <div class="card lightbox">
+                                        <a href="/home/detail?id=@item.Id">
+                                            <img class="card-img-top" src="@item.Image" alt="Gallery Image 1" style="height:300px">
+                                        </a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">@item.Carmodel @item.Modeldetail</h4>
+                                            <h4 class="card-title">
+                                                <em>@item.Brand</em>
+                                                <span style="color:red;float:right">¥@item.Price 元</span>
+                                            </h4>
+                                            <p class="card-text"><small class="text-muted">#@item.Id</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
